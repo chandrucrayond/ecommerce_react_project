@@ -1,4 +1,4 @@
-import { AppBar, InputBase, Toolbar, Grid } from "@mui/material";
+import { AppBar, InputBase, Toolbar, Grid, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Outlet, useNavigate, Route, Routes } from "react-router-dom";
@@ -89,11 +89,12 @@ function AppHeader() {
 
   const theme = createTheme();
   return (
+    <>
     <ThemeProvider theme={theme}>
       <AppBar position="fixed" className={classes.header}>
         <Toolbar>
           <Grid container spacing={2}>
-            <Grid item xs={2}  className={classes.logoImageSection}>
+            <Grid item xs={2} className={classes.logoImageSection}>
               <Logo
                 src={logo}
                 alt="Logo"
@@ -102,44 +103,38 @@ function AppHeader() {
                 sx={{
                   width: 28,
                   height: 28,
-                }}  
+                }}
               />
             </Grid>
 
             <React.Fragment>
-              <Grid item xs={8}>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
-                >
-
-                  <IconButton
-                    size="medium"
-                    sx={{ ml: 2 }}
-                    aria-controls={open ? "account-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    title="cart"
+              <Grid item xs={8} className={classes.paraSection}>
+                <Stack spacing={5} direction="row" className={classes.paraStack}>
+                  <Typography
+                    variant="h4"
+                    className={`${classes.appHeaderPara}`}
                   >
-                    <Notifications
-                      sx={{ backgroundColor: "#1976d2", color: "white" }}
-                    />
-                  </IconButton>
-
-
-                  <IconButton
-                    // size="small"
-                    size="medium"
-                    sx={{ ml: 2 }}
-                    aria-controls={open ? "account-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    title="cart"
+                    Home
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    className={`${classes.appHeaderPara}`}
                   >
-                    <ShoppingCartRounded
-                      sx={{ backgroundColor: "#1976d2", color: "white" }}
-                    />
-                  </IconButton>
-                </Box>
+                    Products
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    className={`${classes.appHeaderPara}`}
+                  >
+                    Services
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    className={`${classes.appHeaderPara}`}
+                  >
+                    About us
+                  </Typography>
+                </Stack>
               </Grid>
               <Grid item xs={2}>
                 <Tooltip title="Account settings">
@@ -232,10 +227,16 @@ function AppHeader() {
                 </Menu>
               </Grid>
             </React.Fragment>
+           
           </Grid>
+          
         </Toolbar>
+       
       </AppBar >
+     
     </ThemeProvider >
+   
+     </>
   );
 }
 
