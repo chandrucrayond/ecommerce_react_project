@@ -1,4 +1,4 @@
-import { AppBar, InputBase, Toolbar } from "@mui/material";
+import { AppBar, InputBase, Toolbar, Grid } from "@mui/material";
 import { styled } from "@mui/system";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Outlet, useNavigate, Route, Routes } from "react-router-dom";
@@ -72,7 +72,7 @@ function AppHeader() {
   }
 
   function handleClickingLogo() {
-    navigate("/product");
+    navigate("/products");
   }
 
   const handleLogout = () => {
@@ -92,59 +92,56 @@ function AppHeader() {
     <ThemeProvider theme={theme}>
       <AppBar position="fixed" className={classes.header}>
         <Toolbar>
-          <Logo
-            src={logo}
-            alt="Logo"
-            onClick={handleClickingLogo}
-            style={{ cursor: "pointer" }}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={2}  className={classes.logoImageSection}>
+              <Logo
+                src={logo}
+                alt="Logo"
+                onClick={handleClickingLogo}
+                style={{ cursor: "pointer" }}
+                sx={{
+                  width: 28,
+                  height: 28,
+                }}  
+              />
+            </Grid>
 
-          <Title
-            variant="p"
-          className={classes.username}
+            <React.Fragment>
+              <Grid item xs={8}>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+                >
 
-          >
-            {loggedIn ? `Hi, ${username}` : ""}
-          </Title>
-          <React.Fragment>
-            <Box
-              sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
-            >
-              {loggedIn ? (
-                <IconButton
-                  // size="small"
-                  size="medium"
-                  sx={{ ml: 2 }}
-                  aria-controls={open ? "account-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  title="cart"
-                >
-                  <Notifications
-                    sx={{ backgroundColor: "#1976d2", color: "white" }}
-                  />
-                </IconButton>
-              ) : (
-                ""
-              )}
-              {loggedIn ? (
-                <IconButton
-                  // size="small"
-                  size="medium"
-                  sx={{ ml: 2 }}
-                  aria-controls={open ? "account-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  title="cart"
-                >
-                  <ShoppingCartRounded
-                    sx={{ backgroundColor: "#1976d2", color: "white" }}
-                  />
-                </IconButton>
-              ) : (
-                ""
-              )}
-              {loggedIn ? (
+                  <IconButton
+                    size="medium"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    title="cart"
+                  >
+                    <Notifications
+                      sx={{ backgroundColor: "#1976d2", color: "white" }}
+                    />
+                  </IconButton>
+
+
+                  <IconButton
+                    // size="small"
+                    size="medium"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    title="cart"
+                  >
+                    <ShoppingCartRounded
+                      sx={{ backgroundColor: "#1976d2", color: "white" }}
+                    />
+                  </IconButton>
+                </Box>
+              </Grid>
+              <Grid item xs={2}>
                 <Tooltip title="Account settings">
                   <IconButton
                     onClick={handleClick}
@@ -164,81 +161,81 @@ function AppHeader() {
                     ></Avatar>
                   </IconButton>
                 </Tooltip>
-              ) : (
-                ""
-              )}
-            </Box>
-            <Menu
-              anchorEl={anchorEl}
-              id="account-menu"
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem onClick={handleClose}>
-                <Avatar sx={{ bgcolor: pink[500] }}>
-                  <Face />
-                </Avatar>{" "}
-                Profile
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Avatar sx={{ bgcolor: green[500] }}>
-                  <Assignment />
-                </Avatar>{" "}
-                Order's
-              </MenuItem>
-              <Divider />
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <PersonAdd fontSize="small" sx={{ color: "#1e88e5" }} />
-                </ListItemIcon>
-                24/7 Customer Care
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <Settings fontSize="small" sx={{ color: "#212121" }} />
-                </ListItemIcon>
-                Settings
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
-          </React.Fragment>
+
+
+                <Menu
+                  anchorEl={anchorEl}
+                  id="account-menu"
+                  open={open}
+                  onClose={handleClose}
+                  onClick={handleClose}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: "visible",
+                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                      mt: 1.5,
+                      "& .MuiAvatar-root": {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      "&:before": {
+                        content: '""',
+                        display: "block",
+                        position: "absolute",
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: "background.paper",
+                        transform: "translateY(-50%) rotate(45deg)",
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: "right", vertical: "top" }}
+                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Avatar sx={{ bgcolor: pink[500] }}>
+                      <Face />
+                    </Avatar>{" "}
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Avatar sx={{ bgcolor: green[500] }}>
+                      <Assignment />
+                    </Avatar>{" "}
+                    Order's
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <PersonAdd fontSize="small" sx={{ color: "#1e88e5" }} />
+                    </ListItemIcon>
+                    24/7 Customer Care
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <Settings fontSize="small" sx={{ color: "#212121" }} />
+                    </ListItemIcon>
+                    Settings
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </Grid>
+            </React.Fragment>
+          </Grid>
         </Toolbar>
-      </AppBar>
-    </ThemeProvider>
+      </AppBar >
+    </ThemeProvider >
   );
 }
 

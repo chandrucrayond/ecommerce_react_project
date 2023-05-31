@@ -10,4 +10,9 @@ export const appHeaderStyle = makeStyles((theme) => ({
         textAlign: "right !important",
         color: "black !important", 
     },
+    logoImageSection: {
+        display: "flex",
+        justifyContent: "center",
+        alignSelf: "center",
+    },
 }));

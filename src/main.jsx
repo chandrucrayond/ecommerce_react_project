@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, } from 'react-router-dom';
 import LoginPage from '../components/LoginPage/index';
-// import ProductListPage from './routes/ProductListPage';
+import ProductListingPage from '../components/ProductListingPage/index';
 import SharedLayout from '../components/SharedLayout/index';
 import Protected from '../components/Protected/index';
 import ErrorPage from '../components/ErrorPage/index';
@@ -30,14 +30,14 @@ const App = () => {
       path: "/",
       errorElement: <ErrorPage />,
       element: (
-        <Protected isSignedIn={isSignedIn}>
+        // <Protected isSignedIn={isSignedIn}>
           <SharedLayout />
-        </Protected>
+        // </Protected>
       ),
       children: [
         {
           path: "/products",
-          element: <h1>hello world</h1>,
+          element: <ProductListingPage />,
         },     
       ],
     },
