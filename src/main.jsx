@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route,  createBrowserRouter,  RouterProvider,} from 'react-router-dom';
-import LoginPage from '../components/LoginPage';
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, } from 'react-router-dom';
+import LoginPage from '../components/LoginPage/index';
 // import ProductListPage from './routes/ProductListPage';
-import SharedLayout from '../components/SharedLayout';
-import Protected from '../components/Protected';
-import ErrorPage from '../components/ErrorPage';
+import SharedLayout from '../components/SharedLayout/index';
+import Protected from '../components/Protected/index';
+import ErrorPage from '../components/ErrorPage/index';
 // import BigSpinner from '../components/BigSpinner';
 import { createTheme } from '@mui/material/styles';
 import '../src/index.css';
+import CreateAccount from '../components/CreateAccount/index';
 // import ProductDescriptionPage from './routes/ProductDescriptionPage';
 
 const App = () => {
@@ -23,43 +24,39 @@ const App = () => {
     setIsSignedIn(false);
   };
 
- 
+
   const router = createBrowserRouter([
-      {
-        path: "/",
-        errorElement : <ErrorPage/ >,
-        element : (
-          <Protected isSignedIn={isSignedIn}>
+    {
+      path: "/",
+      errorElement: <ErrorPage />,
+      element: (
+        <Protected isSignedIn={isSignedIn}>
           <SharedLayout />
-          </Protected>
-        ),
-        children: [
-          {
-            path : "login",
-            // element: <LoginPage onLogin={handleLogin} />,
-            element: <div>This is the dummy login page</div>,
-          },
-          // {
-          //   path: "product",
-          //   errorElement : <ErrorPage/ >,
-          //   element: <ProductListPage />,
-          
-          // },
-          // {
-          //   path: "/products/:id",
-          //   errorElement : <ErrorPage/ >,
-          //   element: <ProductDescriptionPage/>,
-          // },
-          
-        ],
-      },
-    ]);
-  
- return(
-  <RouterProvider
-    router={router}
-  />
-);
+        </Protected>
+      ),
+      children: [
+        {
+          path: "/products",
+          element: <h1>hello world</h1>,
+        },     
+      ],
+    },
+    {
+      path: "/login",
+      errorElement: <ErrorPage />,
+      element: (
+        <Protected isSignedIn={isSignedIn}>
+          <CreateAccount onLogin={handleLogin} />
+        </Protected>
+      ),
+    },
+  ]);
+
+  return (
+    <RouterProvider
+      router={router}
+    />
+  );
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);

@@ -105,7 +105,6 @@ function AppHeader() {
 
           >
             {loggedIn ? `Hi, ${username}` : ""}
-            <p>Hello world</p>
           </Title>
           <React.Fragment>
             <Box
