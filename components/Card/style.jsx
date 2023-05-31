@@ -12,6 +12,12 @@ export const productCardStyles = makeStyles({
     zIndex: '2 !important',
     marginBottom: '30px !important',
     cursor: 'pointer !important',
+    transition: 'all 0.3s ease',
+  },
+  hovered: {
+    transform: 'scale(1.05)',
+    boxShadow: '0 0 0px rgba(0, 0, 0, 0.3)',
+    // other styles
   },
   image: {
     width: '100px !important',
@@ -22,4 +28,17 @@ export const productCardStyles = makeStyles({
     backgroundColor: 'antiquewhite',
     borderRadius: '4px !important',
   },
+  buyNowButton:{
+    positon: 'relative !important',
+    top: '10px !important',
+    backgroundColor: '#219ebc !important',
+    paddingTop: '8px !important',
+    paddingBottom: '8px !important',
+
+  },
+  viewProductButton:{
+    color: '#219ebc',
+    backgroundColor: 'transparent !important',
+    textDecoration: 'underline',
+  }
 });
