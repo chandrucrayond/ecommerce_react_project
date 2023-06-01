@@ -57,7 +57,7 @@ export const jsonData = [
       "Always-on display with At a Glance and Now Playing",
     ],
     dimension: [
-      "6. heightt x 2.8 width x 0.35 depth (in)",
+      "6.0 heightt x 2.8 width x 0.35 depth (in)",
       "152.2 height x 71.8 width x 8.9 depth (mm)",
       "6.3 oz",
       "178 g",

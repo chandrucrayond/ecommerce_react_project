@@ -10,6 +10,7 @@ import ErrorPage from '../components/ErrorPage/index';
 import { createTheme } from '@mui/material/styles';
 import '../src/index.css';
 import CreateAccount from '../components/CreateAccount/index';
+import ExampleComponent from '../components/ExampleComponent';
 // import ProductDescriptionPage from './routes/ProductDescriptionPage';
 
 const App = () => {
@@ -48,6 +49,13 @@ const App = () => {
         <Protected isSignedIn={isSignedIn}>
           <CreateAccount onLogin={handleLogin} />
         </Protected>
+      ),
+    },
+    {
+      path: "/example",
+      errorElement: <ErrorPage />,
+      element: (       
+          <ExampleComponent />
       ),
     },
   ]);

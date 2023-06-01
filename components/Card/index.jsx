@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Stack, Button } from '@mui/material';
 import { productCardStyles } from './style';
+import ViewProductModal from '../ViewProductModal/index';
 
 const ProductCard = ({ product }) => {
     const classes = productCardStyles();
@@ -12,6 +13,17 @@ const ProductCard = ({ product }) => {
 
     const handleMouseLeave = () => {
         setIsHovered(false);
+    };
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);     
+      setIsHovered(false);
     };
 
     return (
@@ -31,6 +43,7 @@ const ProductCard = ({ product }) => {
                                 alt={product.name}
                             />
                         </div>
+                        <ViewProductModal open={open} handleClose={handleClose} productData={product} />
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
                                 <Stack spacing={-1} className={classes.paraStack}>
@@ -41,12 +54,13 @@ const ProductCard = ({ product }) => {
                                         <a
                                             variant="contained"
                                             color="primary"
-                                            onClick={() => console.log('View Product')}
+                                            onClick={handleOpen}
                                             style={{ textAlign: 'left' }}
                                             className={classes.viewProductButton}
                                         >
                                             View Product
                                         </a>
+                                        
                                     ) : (
                                         <p className="main--para__productFeature" style={{ textAlign: 'left' }}>
                                             {product.feature}

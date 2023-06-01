@@ -30,11 +30,16 @@ export const productCardStyles = makeStyles({
   },
   buyNowButton:{
     positon: 'relative !important',
-    top: '10px !important',
+    top: '15px !important',
     backgroundColor: '#219ebc !important',
     paddingTop: '8px !important',
     paddingBottom: '8px !important',
-
+    justifyContent: 'center !important',
+    textAlign: 'center !important',
+    whiteSpace: 'nowrap',
+    width: '70%',
+    height: '40px !important',
+    alignSelf: 'end',
   },
   viewProductButton:{
     color: '#219ebc',
