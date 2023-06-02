@@ -1,0 +1,10 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Container from '@mui/material/Container';
+import { Grid, Stack, Typography } from '@mui/material';
+import Carousel from 'react-material-ui-carousel';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import { buyNowStyle } from "./style";

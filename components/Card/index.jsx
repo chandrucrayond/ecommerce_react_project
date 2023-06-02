@@ -90,7 +90,8 @@ const ProductCard = ({ product }) => {
                                                 {product.price}
                                             </p>
                                             <p className="main--para__productRating" style={{ textAlign: 'right' }}>
-                                                {product.rating}
+                                                {/* {product.rating} */}
+                                                ⭐⭐⭐⭐(1.2k)
                                             </p>
                                         </Stack>
                                     </>

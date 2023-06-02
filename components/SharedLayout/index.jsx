@@ -6,7 +6,7 @@ import FooterSection from '../Footer/index';
 
 function SharedLayout() {
   return (
-    <>
+    <Container>
       <AppHeader />
     
       <div sx={{ display: 'flex', flexDirection: 'column', margin: 0, padding: 0 }}>
@@ -29,7 +29,7 @@ function SharedLayout() {
       <br />
      
 
-    </>
+    </Container>
   );
 }
 
