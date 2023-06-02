@@ -95,10 +95,7 @@ export default function ViewProductModal({ open, handleClose, productData }) {
               navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
                 style: {
                   opacity:"0.1",
-                },
-                '&:hover': {
-                  opacity: "0.2",
-                },
+                }
               }} 
               
               >
