@@ -70,10 +70,6 @@ export default function ViewProductModal({ open, handleClose, productData }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className={classes.modal}
-        // style={{
-        //   paddingBottom: 0
-        // }}
-        // sx={style}
       >
         <Container   sx={style} className={classes.outlineViewProductModal}>
           <Container className={classes.unScrollableSections}>

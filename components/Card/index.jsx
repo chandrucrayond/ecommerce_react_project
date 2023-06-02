@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Stack, Button } from '@mui/material';
 import { productCardStyles } from './style';
 import ViewProductModal from '../ViewProductModal/index';
+import BuyNowModal from '../BuyNowModal/index';
 
 const ProductCard = ({ product }) => {
     const classes = productCardStyles();
@@ -23,6 +24,17 @@ const ProductCard = ({ product }) => {
   
     const handleClose = () => {
       setOpen(false);     
+      setIsHovered(false);
+    };
+
+    const [bnopen, setBnopen] = useState(false);
+
+    const handleBnOpen = () => {
+        setBnopen(true);
+    };
+  
+    const handleBnClose = () => {
+        setBnopen(false);     
       setIsHovered(false);
     };
 
@@ -68,6 +80,7 @@ const ProductCard = ({ product }) => {
                                     )}
                                 </Stack>
                             </Grid>
+                            <BuyNowModal open={bnopen} handleClose={handleBnClose} productData={product} />
                             <Grid item xs={6}>
 
 
@@ -76,7 +89,7 @@ const ProductCard = ({ product }) => {
                                         <Button
                                             variant="contained"
                                             color="secondary"
-                                            onClick={() => console.log('Buy Now')}
+                                            onClick={handleBnOpen}
                                             style={{ textAlign: 'right' }}
                                             className={classes.buyNowButton}
                                         >
@@ -109,57 +122,3 @@ const ProductCard = ({ product }) => {
 
 export default ProductCard;
 
-
-// import React from 'react';
-// import { Grid, Stack } from '@mui/material';
-// import { productCardStyles } from './style';
-
-// const ProductCard = ({ product }) => {
-//     const classes = productCardStyles();
-
-//     console.log('product', product);
-
-//     return (
-//         <div>
-//             <Grid container spacing={2}>
-
-//                 <Grid item xs={4} key={product.index}>
-//                     <div className={classes.fullCarde}>
-//                         <div className={classes.imageContainer} style={{backgroundColor: product.backgroundColor}}>
-//                             <img
-//                                 className={classes.image}
-//                                 src={product.image}
-//                                 alt={product.name}
-//                             />
-//                         </div>
-//                         <Grid container spacing={2}>
-//                             <Grid item xs={6}>
-//                                 <Stack spacing={-1} className={classes.paraStack}>
-//                                     <p className="main--para__productTitle" style={{ textAlign: 'left' }}>
-//                                         {product.name}
-//                                     </p>
-//                                     <p className="main--para__productFeature" style={{ textAlign: 'left' }}>
-//                                         {product.feature}
-//                                     </p>
-//                                 </Stack>
-//                             </Grid>
-//                             <Grid item xs={6}>
-//                                 <Stack spacing={-1} className={classes.paraStack}>
-//                                     <p className="main--para__productPrice" style={{ textAlign: 'right' }}>
-//                                         {product.price}
-//                                     </p>
-//                                     <p className="main--para__productRating" style={{ textAlign: 'right' }}>
-//                                         {product.rating}
-//                                     </p>
-//                                 </Stack>
-//                             </Grid>
-//                         </Grid>
-//                     </div>
-//                 </Grid>
-
-//             </Grid>
-//         </div>
-//     );
-// };
-
-// export default ProductCard;
