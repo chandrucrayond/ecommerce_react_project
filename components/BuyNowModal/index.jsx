@@ -34,7 +34,9 @@ const inputTextfield = {
     marginTop: '5px',
 };
 
-
+const payAmountButton = {
+    backgroundColor: '#219EBC',
+};
 export default function BuyNowModal({ open, handleClose, productData }) {
     const classes = buyNowStyle();
 
@@ -95,7 +97,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                         className={classes.modalTitle}
                         id="modal-title"
                     >
-                        Buy Pixel 5
+                        Buy {productData.name}
                     </Typography>
                     <img
                         src="assets/Group 3739.png"
@@ -347,7 +349,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
                                                 <Typography variant="body2" className="modal--label__address">
-                                                   $ 499
+                                                ${Number(productData.priceInNumber) + 60}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -361,7 +363,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
                                                 <Typography variant="body2" className="modal--label__address">
-                                                   $ 50
+                                                   $60.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -375,7 +377,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
                                                 <Typography variant="body2" className="modal--label__address">
-                                                   $ 699
+                                                   ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -389,7 +391,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
                                                 <Typography variant="body2" className="modal--label__address">
-                                                   $ 699
+                                                ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -397,8 +399,8 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={12}>
-                                                <Button fullWidth>
-                                                  Buy now
+                                                <Button variant="contained" style={payAmountButton} fullWidth>
+                                                  Pay  ${productData.priceInNumber}.00
                                                 </Button>
                                             </Grid>
                                         </Grid>

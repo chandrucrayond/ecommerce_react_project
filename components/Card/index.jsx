@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Grid, Stack, Button } from '@mui/material';
+import RatingComponent from '../RatingComponent/index';
 import { productCardStyles } from './style';
 import ViewProductModal from '../ViewProductModal/index';
 import BuyNowModal from '../BuyNowModal/index';
+
 
 const ProductCard = ({ product }) => {
     const classes = productCardStyles();
@@ -102,9 +104,8 @@ const ProductCard = ({ product }) => {
                                             <p className="main--para__productPrice" style={{ textAlign: 'right' }}>
                                                 {product.price}
                                             </p>
-                                            <p className="main--para__productRating" style={{ textAlign: 'right' }}>
-                                                {/* {product.rating} */}
-                                                ⭐⭐⭐⭐(1.2k)
+                                            <p className="main--para__productRating" style={{ textAlign: 'right',display:'flex',justifyContent: 'end' }}>
+                                                <RatingComponent RatingInNo={product.ratingInNo}/>
                                             </p>
                                         </Stack>
                                     </>

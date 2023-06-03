@@ -21,7 +21,7 @@ export const productCardStyles = makeStyles({
   },
   image: {
     width: '100px !important',
-    height: 'auto !important',
+    height: '120px !important',
     padding: '45px 80px !important',   
   },
   imageContainer:{

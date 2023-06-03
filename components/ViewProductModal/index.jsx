@@ -7,6 +7,7 @@ import { viewProductModalStyle } from "./style";
 import { Grid, Stack } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import RatingComponent from '../RatingComponent/index';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 
@@ -71,7 +72,7 @@ export default function ViewProductModal({ open, handleClose, productData }) {
         aria-describedby="modal-modal-description"
         className={classes.modal}
       >
-        <Container   sx={style} className={classes.outlineViewProductModal}>
+        <Container sx={style} className={classes.outlineViewProductModal}>
           <Container className={classes.unScrollableSections}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
@@ -94,183 +95,183 @@ export default function ViewProductModal({ open, handleClose, productData }) {
               IndicatorIcon="" // Previous Example
               navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
                 style: {
-                  opacity:"0.1",
+                  opacity: "0.1",
                 }
-              }} 
-              
-              >
-            {items.map((item) => (
-              <div className={classes.carouselSection}>
-                <img src={'../' + item.url} alt={item.url} key={item.id} className={classes.carouselImage} />
-              </div >
-            ))}
+              }}
 
-          </Carousel>
-        </Container>
+            >
+              {items.map((item) => (
+                <div className={classes.carouselSection}>
+                  <img src={'../' + item.url} alt={item.url} key={item.id} className={classes.carouselImage} />
+                </div >
+              ))}
+
+            </Carousel>
+          </Container>
 
 
-        <Container className={classes.scrollableSections} sx={scrollableSectionStyle}>
-          <Grid container spacing={10} className={classes.color}>
+          <Container className={classes.scrollableSections} sx={scrollableSectionStyle}>
+            <Grid container spacing={10} className={classes.color}>
 
-            <Grid item xs={3} >
-              <p className={classes.paraHeadingInModal}>
-                Color
-              </p>
+              <Grid item xs={3} >
+                <p className={classes.paraHeadingInModal}>
+                  Color
+                </p>
+              </Grid>
+
+              {productData.color.map((color, index) => (
+                <Grid item xs={2} key={index}>
+                  <p className={classes.paraInModal}>
+                    {color}
+                  </p>
+                </Grid>
+              ))}
             </Grid>
 
-            {productData.color.map((color, index) => (
-              <Grid item xs={2} key={index}>
+
+            <Grid container spacing={10} className={classes.display}>
+              <Grid item xs={3} >
+                <p className={classes.paraHeadingInModal}>
+                  Display
+                </p>
+              </Grid>
+
+              <Grid item xs={9}>
+                <Grid container direction="column" spacing={2}>
+                  {productData.display.map((display, index) => (
+                    <Grid item>
+                      <p className={classes.paraInModal}>
+                        {display}
+                      </p>
+                    </Grid>
+
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+            <Grid container spacing={10} className={classes.dimension}>
+              <Grid item xs={3}>
+
+                <p className={classes.paraHeadingInModal}>
+                  Dimension & Weight
+                </p>
+
+              </Grid>
+              <Grid item xs={9}>
+                <Grid container direction="column" spacing={2}>
+                  {productData.dimension.map((dimension) => (
+
+                    <Grid item>
+                      <p className={classes.paraInModal}>
+                        {dimension}
+                      </p>
+                    </Grid>
+
+                  ))}
+
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+
+            <Grid container spacing={10} className={classes.battery}>
+              <Grid item xs={3}>
+
+                <p className={classes.paraHeadingInModal}>
+                  Battery & Charging
+                </p>
+
+              </Grid>
+              <Grid item xs={9}>
+                <Grid container direction="column" spacing={2}>
+                  {productData.battery.map((battery) => (
+
+                    <Grid item>
+                      <p className={classes.paraInModal}>
+                        {battery}
+                      </p>
+                    </Grid>
+
+                  ))}
+
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+
+            <Grid container spacing={10} className={classes.memory}>
+              <Grid item xs={3}>
+
+                <p className={classes.paraHeadingInModal}>
+                  Memory
+                </p>
+
+              </Grid>
+              <Grid item xs={9}>
+
                 <p className={classes.paraInModal}>
-                  {color}
+                  {productData.memory}
                 </p>
-              </Grid>
-            ))}
-          </Grid>
-
-
-          <Grid container spacing={10} className={classes.display}>
-            <Grid item xs={3} >
-              <p className={classes.paraHeadingInModal}>
-                Display
-              </p>
-            </Grid>
-
-            <Grid item xs={9}>
-              <Grid container direction="column" spacing={2}>
-                {productData.display.map((display, index) => (
-                  <Grid item>
-                    <p className={classes.paraInModal}>
-                      {display}
-                    </p>
-                  </Grid>
-
-                ))}
-              </Grid>
-            </Grid>
-          </Grid>
-
-
-
-          <Grid container spacing={10} className={classes.dimension}>
-            <Grid item xs={3}>
-
-              <p className={classes.paraHeadingInModal}>
-                Dimension & Weight
-              </p>
-
-            </Grid>
-            <Grid item xs={9}>
-              <Grid container direction="column" spacing={2}>
-                {productData.dimension.map((dimension) => (
-
-                  <Grid item>
-                    <p className={classes.paraInModal}>
-                      {dimension}
-                    </p>
-                  </Grid>
-
-                ))}
 
               </Grid>
             </Grid>
-          </Grid>
 
 
 
+            <Grid container spacing={10} className={classes.storage}>
+              <Grid item xs={3}>
 
-          <Grid container spacing={10} className={classes.battery}>
-            <Grid item xs={3}>
+                <p className={classes.paraHeadingInModal}>
+                  Storage
+                </p>
 
-              <p className={classes.paraHeadingInModal}>
-                Battery & Charging
-              </p>
+              </Grid>
+              <Grid item xs={9}>
 
-            </Grid>
-            <Grid item xs={9}>
-              <Grid container direction="column" spacing={2}>
-                {productData.battery.map((battery) => (
-
-                  <Grid item>
-                    <p className={classes.paraInModal}>
-                      {battery}
-                    </p>
-                  </Grid>
-
-                ))}
+                <p className={classes.paraInModal}>
+                  {productData.storage}
+                </p>
 
               </Grid>
             </Grid>
-          </Grid>
 
 
 
+          </Container>
 
-          <Grid container spacing={10} className={classes.memory}>
-            <Grid item xs={3}>
 
-              <p className={classes.paraHeadingInModal}>
-                Memory
-              </p>
 
+          <Container className={classes.unScrollableSections2}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Grid item>
+                  <p className={`${classes.priceInNumber}`}>
+                    $ {productData.priceInNumber}
+                  </p>
+                </Grid>
+                <Grid item>
+                  <p className={`${classes.ratingInNo}`} style={{justifyContent: 'unset',}}>
+                    <RatingComponent RatingInNo={productData.ratingInNo} />
+                  </p>
+                </Grid>
+              </Grid>
+              <Grid item xs={6} className={`${classes.buyNowButtonSection}`}>
+                <Button onClick={handleClose} className={`${classes.buyNowButton}`}>Buy Now</Button>
+              </Grid>
             </Grid>
-            <Grid item xs={9}>
-
-              <p className={classes.paraInModal}>
-                {productData.memory}
-              </p>
-
-            </Grid>
-          </Grid>
-
-
-
-          <Grid container spacing={10} className={classes.storage}>
-            <Grid item xs={3}>
-
-              <p className={classes.paraHeadingInModal}>
-                Storage
-              </p>
-
-            </Grid>
-            <Grid item xs={9}>
-
-              <p className={classes.paraInModal}>
-                {productData.storage}
-              </p>
-
-            </Grid>
-          </Grid>
+          </Container>
 
 
 
         </Container>
-
-
-
-        <Container className={classes.unScrollableSections2}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Grid item>
-                <p className={`${classes.priceInNumber}`}>
-                  {productData.priceInNumber}
-                </p>
-              </Grid>
-              <Grid item>
-                <p className={`${classes.ratingInNo}`}>
-                  {productData.ratingInNo}
-                </p>
-              </Grid>
-            </Grid>
-            <Grid item xs={6} className={`${classes.buyNowButtonSection}`}>
-              <Button onClick={handleClose}  className={`${classes.buyNowButton}`}>Buy Now</Button>
-            </Grid>
-          </Grid>
-        </Container>
-
-
-
-      </Container>
-    </Modal>
+      </Modal>
 
     </div >
   );
