@@ -45,5 +45,18 @@ export const productCardStyles = makeStyles({
     color: '#219ebc',
     backgroundColor: 'transparent !important',
     textDecoration: 'underline',
-  }
+  },
+
+  // smallScreenImageContainer: {
+  //  width: '100% !important',
+  //  justifyContent: 'center',
+
+  // },
+
+  // responsiveImage:{
+  //   width: '100% !important',
+  //   height: 'auto !important',
+  //   maxHeight: '200px !important',
+  //   objectFit: 'contain !important',
+  // },
 });

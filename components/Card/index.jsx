@@ -4,7 +4,8 @@ import RatingComponent from '../RatingComponent/index';
 import { productCardStyles } from './style';
 import ViewProductModal from '../ViewProductModal/index';
 import BuyNowModal from '../BuyNowModal/index';
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
 
 const ProductCard = ({ product }) => {
     const classes = productCardStyles();
@@ -40,21 +41,35 @@ const ProductCard = ({ product }) => {
       setIsHovered(false);
     };
 
+    const theme = createTheme({
+        breakpoints: {
+          values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+          },
+        }, 
+      });
+    const isMdScreen = useMediaQuery(() => theme.breakpoints.down('md'));
+
     return (
         <div>
             <Grid container spacing={2}>
 
                 <Grid item xs={4} key={product.index}>
                     <div
-                        className={`${classes.fullCarde} ${isHovered ? classes.hovered : ''}`}
+                        className={`${classes.fullCarde} ${isHovered ? classes.hovered : ''} `}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
+                       
                     >
-                        <div className={classes.imageContainer} style={{ backgroundColor: product.backgroundColor }}>
+                        <div className={`${classes.imageContainer}  ${ isMdScreen ? classes.smallScreenImageContainer : '' }`} style={{ backgroundColor: product.backgroundColor }}>
                             <img
-                                className={classes.image}
                                 src={product.image}
                                 alt={product.name}
+                                className={`${isMdScreen ? classes.responsiveImage : '' } ${classes.image}`}
                             />
                         </div>
                         <ViewProductModal open={open} handleClose={handleClose} productData={product} />

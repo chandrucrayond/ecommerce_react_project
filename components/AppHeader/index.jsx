@@ -1,4 +1,4 @@
-import { AppBar, InputBase, Toolbar, Grid, Stack } from "@mui/material";
+import { AppBar, InputBase, Toolbar, Grid, Stack, Collapse } from "@mui/material";
 import { styled } from "@mui/system";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Outlet, useNavigate, Route, Routes } from "react-router-dom";
@@ -30,8 +30,7 @@ import {
 import { green, pink } from "@mui/material/colors";
 import { appHeaderStyle } from "./style";
 
-
-
+// Inline styled mui elements
 
 const Logo = styled("img")({
   maxWidth: "150px",
@@ -42,6 +41,14 @@ const Logo = styled("img")({
 const Title = styled(Typography)({
   flexGrow: 1,
 });
+
+const CusMenuItem = styled(MenuItem)({
+  fontSize: "13px",
+  fontFamily: "Montserrat , sans-serif",
+  fontWeight: "500",
+});
+
+// Inline styled mui elements ending
 
 function AppHeader() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -79,6 +86,17 @@ function AppHeader() {
     navigate("/products");
   }
 
+  const [menuItemClicked, setMenuItemClicked] = React.useState(false);
+
+  function handleClickingMenuIcon() {
+    setMenuItemClicked((prev) => !prev);
+  }
+
+  const [clickedButton, setClickedButton] = React.useState('Products');
+
+  const handleButtonClick = (buttonName) => {
+    setClickedButton(buttonName);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("firstName");
@@ -101,6 +119,8 @@ function AppHeader() {
         xl: 1536,
       },
     },
+
+
   });
   const isMdScreen = useMediaQuery(() => theme.breakpoints.down('md'));
   return (
@@ -109,29 +129,76 @@ function AppHeader() {
         <AppBar position="fixed" className={classes.header}>
           <Toolbar>
             <Grid container spacing={2}>
-              <Grid item xs={6} md={2} className={classes.logoImageSection}>
+              <Grid item xs={6} md={2} className={classes.logoImageSection} style={{ justifyContent: 'start', }}>
                 {isMdScreen ? (
-                  <IconButton onClick={handleClickingLogo}>
-                    <img
-                      src="assets/menu__button.png"
-                      alt="Menu"
-                      style={{
+                  <>
+                    <Grid >
+                      <Grid item xs={12}>
+                        <IconButton onClick={handleClickingMenuIcon}>
+                          <img
+                            src="assets/menu__button.png"
+                            alt="Menu"
+                            style={{
+                              width: 28,
+                              height: 28,
+                            }}
+                          />
+                        </IconButton>
+                      </Grid>
+                      <Collapse in={menuItemClicked}>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Home' ? classes.clicked : ''}`}
+                            onClick={() => handleButtonClick('Home')}
+                          >
+                            Home
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Products' ?  classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Products')}
+                          >
+                            Products
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Services' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Services')}
+                          >
+                            Services
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'About' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('About')}
+                          >
+                            About us
+                          </Typography>
+                        </Grid>
+                      </Collapse>
+                    </Grid>
+                  </>
+                ) : (
+                  <>
+                    <Logo
+                      src={logo}
+                      alt="Logo"
+                      onClick={handleClickingLogo}
+                      style={{ cursor: 'pointer', }}
+                      sx={{
                         width: 28,
                         height: 28,
                       }}
                     />
-                  </IconButton>
-                ) : (
-                  <Logo
-                    src={logo}
-                    alt="Logo"
-                    onClick={handleClickingLogo}
-                    style={{ cursor: 'pointer' }}
-                    sx={{
-                      width: 28,
-                      height: 28,
-                    }}
-                  />
+
+                  </>
                 )}
               </Grid>
 
@@ -140,31 +207,35 @@ function AppHeader() {
                   <Stack spacing={5} direction="row" className={classes.paraStack}>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara}`}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'Home' ? classes.clicked : ''}`}
+                            onClick={() => handleButtonClick('Home')}
                     >
                       Home
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara}`}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'Products' ?  classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Products')}
                     >
                       Products
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara}`}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'Services' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Services')}
                     >
                       Services
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara}`}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'About' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('About')}
                     >
                       About us
                     </Typography>
                   </Stack>
                 </Grid>
-                <Grid item xs={6} md={2}>
+                <Grid item xs={6} md={2} style={{ display: 'flex', justifyContent: 'end', alignItems: 'baseline', marginTop: '5px', }}>
                   <Tooltip title="Account settings">
                     <IconButton
                       onClick={handleClick}
@@ -173,6 +244,7 @@ function AppHeader() {
                       aria-controls={open ? "account-menu" : undefined}
                       aria-haspopup="true"
                       aria-expanded={open ? "true" : undefined}
+
                     >
                       <Avatar
                         sx={{
@@ -221,37 +293,37 @@ function AppHeader() {
                     transformOrigin={{ horizontal: "right", vertical: "top" }}
                     anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                   >
-                    <MenuItem onClick={handleClose}>
+                    <CusMenuItem onClick={handleClose}>
                       <Avatar sx={{ bgcolor: pink[500] }}>
                         <Face />
                       </Avatar>{" "}
                       Profile
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
+                    </CusMenuItem>
+                    <CusMenuItem onClick={handleClose}>
                       <Avatar sx={{ bgcolor: green[500] }}>
                         <Assignment />
                       </Avatar>{" "}
                       Order's
-                    </MenuItem>
+                    </CusMenuItem>
                     <Divider />
-                    <MenuItem onClick={handleClose}>
+                    <CusMenuItem onClick={handleClose}>
                       <ListItemIcon>
                         <PersonAdd fontSize="small" sx={{ color: "#1e88e5" }} />
                       </ListItemIcon>
                       24/7 Customer Care
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
+                    </CusMenuItem>
+                    <CusMenuItem onClick={handleClose}>
                       <ListItemIcon>
                         <Settings fontSize="small" sx={{ color: "#212121" }} />
                       </ListItemIcon>
                       Settings
-                    </MenuItem>
-                    <MenuItem onClick={handleLogout}>
+                    </CusMenuItem>
+                    <CusMenuItem onClick={handleLogout}>
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>
                       Logout
-                    </MenuItem>
+                    </CusMenuItem>
                   </Menu>
                 </Grid>
               </React.Fragment>

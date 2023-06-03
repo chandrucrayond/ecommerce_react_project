@@ -41,4 +41,16 @@ export const appHeaderStyle = makeStyles((theme) => ({
       marginRight: '3px',
       fontWeight: '600',
     },
+    menuButtonPara: {
+        marginBottom: '10px !important',
+        marginLeft: '20px !important',
+    },
+    clicked: {
+        display: 'list-item',
+        color: '#219EBC !important',
+        fontWeight: '600 !important',
+    },
+    notClicked: {
+        display: 'block',
+    },
 }));
