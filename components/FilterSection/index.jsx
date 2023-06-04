@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { filterSectionStyle } from './style';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useMediaQuery, Box } from '@mui/material';
+import { useMediaQuery, Box, Checkbox } from '@mui/material';
+import { pink } from '@mui/material/colors';
 
 export default function FilterSection() {
     const classes = filterSectionStyle();
@@ -17,6 +18,23 @@ export default function FilterSection() {
         },
     });
     const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
+    const [isPhonesChecked, setIsPhonesChecked] = useState(false);
+    const [isHeadphonesChecked, setIsHeadphonesChecked] = useState(false);
+    const [isAccessoriesChecked, setIsAccessoriesChecked] = useState(false);
+
+    const handlePhonesCheckboxChange = (event) => {
+        setIsPhonesChecked(event.target.checked);
+    };
+
+    const handleHeadphonesCheckboxChange = (event) => {
+        setIsHeadphonesChecked(event.target.checked);
+    };
+
+    const handleAccessoriesCheckboxChange = (event) => {
+        setIsAccessoriesChecked(event.target.checked);
+    };
+
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     return (
         <Box
@@ -24,23 +42,61 @@ export default function FilterSection() {
 
             <p id="main--checkbox__filter" style={{ display: isMdScreen ? 'none' : 'block' }}>Filters</p>
             <form action="/action_page.php">
-                <Box className={`${isMdScreen ? classes.responsiveFilterContents : ''} `}>
+                <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
+                    <Box className={`${classes.responsiveFilterContents}`}>
 
-                    <>
-                        <input type="checkbox" id="main--checkbox__phone" value="Phones" className={`${classes.filterCheckbox}`} />
-                        <label htmlFor="main--checkbox__phone" id="main--checkbox__selected" style={{ cursor: 'pointer' }}>Phones</label>
-                    </>
+                        <Checkbox
+                            {...label}
+                            className={`${classes.filterCheckbox}`}
+                            checked={isPhonesChecked}
+                            onChange={handlePhonesCheckboxChange}
+                            defaultChecked
+                            size="small" 
+                            sx={{
+                                // color: pink[800],
+                                '&.Mui-checked': {
+                                    color: '#219ebc',
+                                },
+                            }}
+                        />
+                        <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}>Phones</label>
+                    </Box>
                     <br />
-                    <>
-                        <input type="checkbox" id="main--checkbox__headphones" value="Headphones" className={`${classes.filterCheckbox}`} />
-                        <label htmlFor="main--checkbox__headphones" style={{ cursor: 'pointer' }}>Headphones</label>
-                    </>
+                    <Box className={`${classes.responsiveFilterContents}`}>
+                        <Checkbox
+                            {...label}
+                            className={`${classes.filterCheckbox}`}
+                            checked={isHeadphonesChecked}
+                            onChange={handleHeadphonesCheckboxChange}
+                            defaultChecked
+                            size="small" 
+                            sx={{
+                                // color: pink[800],
+                                '&.Mui-checked': {
+                                    color: '#219ebc',
+                                },
+                            }}
+                        />
+                        <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}>Headphones</label>
+                    </Box>
                     <br />
-                    <>
-                        <input type="checkbox" id="main--checkbox__accessories" value="Accessories" className={`${classes.filterCheckbox}`} />
-                        <label htmlFor="main--checkbox__accessories" style={{ cursor: 'pointer' }}>Accessories</label>
-                    </>
-
+                    <Box className={`${classes.responsiveFilterContents}`}>
+                        <Checkbox
+                            {...label}
+                            className={`${classes.filterCheckbox}`}
+                            checked={isAccessoriesChecked}
+                            onChange={handleAccessoriesCheckboxChange}
+                            defaultChecked
+                            size="small" 
+                            sx={{
+                                // color: pink[800],
+                                '&.Mui-checked': {
+                                    color: '#219ebc',
+                                },
+                            }}
+                        />
+                        <label className={isAccessoriesChecked ? classes.responsiveFilterChecked : ''}>Accessories</label>
+                    </Box>
                 </Box>
             </form>
 
