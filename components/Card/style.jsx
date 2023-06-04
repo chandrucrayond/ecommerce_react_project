@@ -3,8 +3,9 @@ import { makeStyles } from '@mui/styles';
 export const productCardStyles = makeStyles({
   fullCarde: {
     borderRadius: '5px !important',
-    width: '270px !important',
-    height: '300px !important',
+    minWidth: '270px',
+    width: '90%',
+    height: '300px ',
     margin: '0 auto !important',
     textAlign: 'center !important',
     boxSizing: 'border-box !important',
@@ -47,16 +48,4 @@ export const productCardStyles = makeStyles({
     textDecoration: 'underline',
   },
 
-  // smallScreenImageContainer: {
-  //  width: '100% !important',
-  //  justifyContent: 'center',
-
-  // },
-
-  // responsiveImage:{
-  //   width: '100% !important',
-  //   height: 'auto !important',
-  //   maxHeight: '200px !important',
-  //   objectFit: 'contain !important',
-  // },
 });

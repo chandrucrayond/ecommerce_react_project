@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Stack, Button } from '@mui/material';
+import { Grid, Stack, Button, Box } from '@mui/material';
 import RatingComponent from '../RatingComponent/index';
 import { productCardStyles } from './style';
 import ViewProductModal from '../ViewProductModal/index';
@@ -41,35 +41,23 @@ const ProductCard = ({ product }) => {
       setIsHovered(false);
     };
 
-    const theme = createTheme({
-        breakpoints: {
-          values: {
-            xs: 0,
-            sm: 600,
-            md: 900,
-            lg: 1200,
-            xl: 1536,
-          },
-        }, 
-      });
-    const isMdScreen = useMediaQuery(() => theme.breakpoints.down('md'));
-
+   
     return (
-        <div>
+        <Box>
             <Grid container spacing={2}>
 
-                <Grid item xs={4} key={product.index}>
+                <Grid item xs={12} md={4} key={product.index}>
                     <div
                         className={`${classes.fullCarde} ${isHovered ? classes.hovered : ''} `}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                        
                     >
-                        <div className={`${classes.imageContainer}  ${ isMdScreen ? classes.smallScreenImageContainer : '' }`} style={{ backgroundColor: product.backgroundColor }}>
+                        <div className={`${classes.imageContainer}`} style={{ backgroundColor: product.backgroundColor }}>
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                className={`${isMdScreen ? classes.responsiveImage : '' } ${classes.image}`}
+                                className={`${classes.image}`}
                             />
                         </div>
                         <ViewProductModal open={open} handleClose={handleClose} productData={product} />
@@ -132,7 +120,7 @@ const ProductCard = ({ product }) => {
                 </Grid>
 
             </Grid>
-        </div>
+        </Box>
     );
 };
 

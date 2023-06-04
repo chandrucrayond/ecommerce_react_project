@@ -1,30 +1,50 @@
 import React from 'react';
 import { filterSectionStyle } from './style';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useMediaQuery, Box } from '@mui/material';
 
 export default function FilterSection() {
     const classes = filterSectionStyle();
+    const theme = createTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 900,
+                lg: 1200,
+                xl: 1536,
+            },
+        },
+    });
+    const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
+
     return (
-        <section
-            className={`${classes.filterSectionContainer} main--section__subSection1 filter--section__closable pe-5 mx-auto`}>
-            <p id="main--checkbox__filter">Filters</p>
+        <Box
+            className={`${classes.filterSectionContainer}`}>
+
+            <p id="main--checkbox__filter" style={{ display: isMdScreen ? 'none' : 'block' }}>Filters</p>
             <form action="/action_page.php">
-                <div className="checkbox--items__alignment">
-                    <input type="checkbox" id="main--checkbox__phone" value="Phones" className={`${classes.filterCheckbox}`}/>
-                    <label htmlFor="main--checkbox__phone" id="main--checkbox__selected" className="main--checkbox__selected" style={{ cursor: 'pointer' }}>Phones</label>
-                </div>
-                <br />
-                <div className="checkbox--items__alignment">
-                    <input type="checkbox" id="main--checkbox__headphones" value="Headphones" className={`${classes.filterCheckbox}`}/>
-                    <label htmlFor="main--checkbox__headphones" className="main--checkbox__selected" style={{ cursor: 'pointer' }}>Headphones</label>
-                </div>
-                <br />
-                <div className="checkbox--items__alignment">
-                    <input type="checkbox" id="main--checkbox__accessories" value="Accessories" className={`${classes.filterCheckbox}`}/>
-                    <label htmlFor="main--checkbox__accessories" className="main--checkbox__selected" style={{ cursor: 'pointer' }}>Accessories</label>
-                </div>
-                {/* <br /><br /> */}
+                <Box className={`${isMdScreen ? classes.responsiveFilterContents : ''} `}>
+
+                    <>
+                        <input type="checkbox" id="main--checkbox__phone" value="Phones" className={`${classes.filterCheckbox}`} />
+                        <label htmlFor="main--checkbox__phone" id="main--checkbox__selected" style={{ cursor: 'pointer' }}>Phones</label>
+                    </>
+                    <br />
+                    <>
+                        <input type="checkbox" id="main--checkbox__headphones" value="Headphones" className={`${classes.filterCheckbox}`} />
+                        <label htmlFor="main--checkbox__headphones" style={{ cursor: 'pointer' }}>Headphones</label>
+                    </>
+                    <br />
+                    <>
+                        <input type="checkbox" id="main--checkbox__accessories" value="Accessories" className={`${classes.filterCheckbox}`} />
+                        <label htmlFor="main--checkbox__accessories" style={{ cursor: 'pointer' }}>Accessories</label>
+                    </>
+
+                </Box>
             </form>
-        </section>
+
+        </Box>
 
     );
 }
