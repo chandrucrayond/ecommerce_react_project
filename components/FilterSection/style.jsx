@@ -41,6 +41,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
         paddingBottom: '0px !important',
         marginTop: '0px !important',
         marginBottom: '0px !important',
+       
     },
     responsiveFilterChecked: {
         cursor: 'pointer !important',
@@ -55,5 +56,13 @@ export const filterSectionStyle = makeStyles((theme) => ({
         lineHeight: '15px',
         letterSpacing: '0px',
         color: '#B3C1C8',
+    },
+    HeadphonesFilter: {
+    position: 'relative !important',
+    bottom: '20px !important',
+    },
+    AccessoriesFilter: {
+        position: 'relative !important',
+        bottom: '40px !important',
     },
 }));

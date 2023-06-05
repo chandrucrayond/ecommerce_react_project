@@ -47,7 +47,7 @@ export default function FilterSection() {
             }}  className={`${classes.filterPara}`}>Filters</p>
             <form action="/action_page.php">
                 <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
-                    <Box className={`${classes.responsiveFilterContents}`}>
+                    <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
 
                         <Checkbox
                             {...label}
@@ -64,7 +64,7 @@ export default function FilterSection() {
                         <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}>Phones</label>
                     </Box>
                     <br />
-                    <Box className={`${classes.responsiveFilterContents}`}>
+                    <Box className={`${classes.responsiveFilterContents} ${classes.HeadphonesFilter}`}>
                         <Checkbox
                             {...label}
                             className={`${classes.filterCheckbox}`}
@@ -81,7 +81,7 @@ export default function FilterSection() {
                         <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}>Headphones</label>
                     </Box>
                     <br />
-                    <Box className={`${classes.responsiveFilterContents}`}>
+                    <Box className={`${classes.responsiveFilterContents} ${classes.AccessoriesFilter}`}>
                         <Checkbox
                             {...label}
                             className={`${classes.filterCheckbox}`}
