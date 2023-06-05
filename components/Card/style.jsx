@@ -62,7 +62,6 @@ export const productCardStyles = makeStyles({
     fontWeight: '500 !important',
     fontSize: '12px !important',
     lineHeight: '15px !important',
-    color: '#219ebc !important',
   },
   productTitle: {
     fontFamily: 'Montserrat !important',

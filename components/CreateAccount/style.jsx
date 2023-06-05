@@ -51,12 +51,6 @@ export const createAccountStyle = makeStyles((theme) => ({
           fontSize: '12px !important',
           marginTop: '5px !important',
         },
-        errorMessage: {
-          color: 'red !important',
-          fontSize: '12px !important',
-          marginTop: '5px !important',
-          display: 'none !important',
-        },
         inputUsernameHover: {
           backgroundColor: '#219ebc1a !important',
           cursor: 'pointer !important',
@@ -171,6 +165,8 @@ export const createAccountStyle = makeStyles((theme) => ({
           color: 'red',
           position: 'relative',
           bottom: '15px',
+          fontSize: '15px !important',
+          marginTop: '5px !important',
         },
         
       

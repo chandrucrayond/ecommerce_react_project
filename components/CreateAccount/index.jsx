@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Grid, CircularProgress } from "@mui/material";
+import { Typography, Grid, CircularProgress, Snackbar, Alert } from "@mui/material";
 import { createAccountStyle } from "./style";
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +17,15 @@ function CreateAccount({ onLogin }) {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
+    const [openSnackBar, setOpenSnackBar] = React.useState(false);
 
-
-
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpenSnackBar(false);
+      };
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -32,11 +38,15 @@ function CreateAccount({ onLogin }) {
         ) {
             setInputValues();
             setLoading(true);
+           
             setTimeout(function () {
+               
                 var successMessage = document.getElementById("successMessage");
                 successMessage.classList.add("show");
                 setTimeout(function () {
+                    setOpenSnackBar(true);
                     setLoading(false);
+                    onLogin();
                     navigate("/products");
                 }, 1000);
             }, 1000);
@@ -113,7 +123,7 @@ function CreateAccount({ onLogin }) {
             setLoading(false);
             onLogin();
             navigate("../products");
-        }, 3000);
+        }, 1500);
     }
 
     return (
@@ -123,6 +133,11 @@ function CreateAccount({ onLogin }) {
                     <CircularProgress size={24} />
                 </div>
             )}
+            <Snackbar open={openSnackBar} autoHideDuration={1000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
+                    Account Created successfully!
+                </Alert>
+            </Snackbar>
             <section className={classes.createAccountSection}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
@@ -227,7 +242,8 @@ function CreateAccount({ onLogin }) {
                                         className={`${classes.loginButton} createAccount--button loginAccount--button`}
                                         onClick={handleLoginClick}
                                     >
-                                        {loading ? 'Logging in...' : ' Login Account'}
+                                        {/* {loading ? 'Logging in...' : ' Login Account'} */}
+                                        Login Account
                                     </button>
                                 </form>
                                 <div id="successMessage" className={classes.successCard}>

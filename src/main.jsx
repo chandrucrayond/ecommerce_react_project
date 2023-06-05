@@ -33,7 +33,7 @@ const App = () => {
       element: (
         <Protected isSignedIn={isSignedIn}>
           <SharedLayout />
-          </Protected>
+        </Protected>
       ),
       children: [
         {
