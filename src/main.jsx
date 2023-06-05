@@ -31,9 +31,9 @@ const App = () => {
       path: "/",
       errorElement: <ErrorPage />,
       element: (
-        // <Protected isSignedIn={isSignedIn}>
+        <Protected isSignedIn={isSignedIn}>
           <SharedLayout />
-        // </Protected>
+          </Protected>
       ),
       children: [
         {
