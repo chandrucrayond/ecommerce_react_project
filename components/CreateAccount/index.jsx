@@ -23,13 +23,15 @@ function CreateAccount({ onLogin }) {
         if (reason === 'clickaway') {
           return;
         }
-    
         setOpenSnackBar(false);
       };
 
     function handleFormSubmit(event) {
         event.preventDefault();
-
+        validateName();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
         if (
             validateName() &&
             validateEmail() &&
@@ -93,7 +95,12 @@ function CreateAccount({ onLogin }) {
     }
 
     function validatePassword() {
-        if (password.length < 8) {
+        if (password.trim() === "") {
+            setPasswordError('Password is required');
+            isValid = false;
+            return false;
+        } 
+       else if (password.length < 8) {
             setPasswordError('Password must be at least 8 characters long');
             isValid = false;
             return false;
@@ -175,7 +182,10 @@ function CreateAccount({ onLogin }) {
                                             id="username"
                                             name="username"
                                             value={username}
-                                            onChange={(e) => setUsername(e.target.value)}
+                                            onChange={(e) => {
+                                                setUsername(e.target.value);
+                                                validateName();
+                                            }}
                                         />
                                         {nameError && <div className={classes.errorMessage}>{nameError}</div>}
                                     </div>
@@ -189,7 +199,10 @@ function CreateAccount({ onLogin }) {
                                             id="email"
                                             name="email"
                                             value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            onChange={(e) =>{ 
+                                                setEmail(e.target.value);
+                                                validateEmail();
+                                            }}
                                         />
                                         {emailError && <div className={classes.errorMessage}>{emailError}</div>}
                                     </div>
@@ -203,7 +216,10 @@ function CreateAccount({ onLogin }) {
                                             id="password"
                                             name="password"
                                             value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            onChange={(e) => {
+                                                setPassword(e.target.value);
+                                                validatePassword();
+                                            }}
                                         />
                                         <img
                                             src="assets/visibility@2x.png"
