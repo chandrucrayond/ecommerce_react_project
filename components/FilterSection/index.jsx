@@ -18,7 +18,7 @@ export default function FilterSection() {
         },
     });
     const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
-    const [isPhonesChecked, setIsPhonesChecked] = useState(false);
+    const [isPhonesChecked, setIsPhonesChecked] = useState(true);
     const [isHeadphonesChecked, setIsHeadphonesChecked] = useState(false);
     const [isAccessoriesChecked, setIsAccessoriesChecked] = useState(false);
 
@@ -40,7 +40,11 @@ export default function FilterSection() {
         <Box
             className={`${classes.filterSectionContainer}`}>
 
-            <p id="main--checkbox__filter" style={{ display: isMdScreen ? 'none' : 'block' }}>Filters</p>
+            <p  style={{
+                display: isMdScreen ? 'none' : 'block',
+                position: 'relative',
+                left: '12px',             
+            }}  className={`${classes.filterPara}`}>Filters</p>
             <form action="/action_page.php">
                 <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
                     <Box className={`${classes.responsiveFilterContents}`}>
@@ -50,10 +54,8 @@ export default function FilterSection() {
                             className={`${classes.filterCheckbox}`}
                             checked={isPhonesChecked}
                             onChange={handlePhonesCheckboxChange}
-                            defaultChecked
-                            size="small" 
+                            size="small"
                             sx={{
-                                // color: pink[800],
                                 '&.Mui-checked': {
                                     color: '#219ebc',
                                 },
@@ -68,8 +70,7 @@ export default function FilterSection() {
                             className={`${classes.filterCheckbox}`}
                             checked={isHeadphonesChecked}
                             onChange={handleHeadphonesCheckboxChange}
-                            defaultChecked
-                            size="small" 
+                            size="small"
                             sx={{
                                 // color: pink[800],
                                 '&.Mui-checked': {
@@ -86,8 +87,7 @@ export default function FilterSection() {
                             className={`${classes.filterCheckbox}`}
                             checked={isAccessoriesChecked}
                             onChange={handleAccessoriesCheckboxChange}
-                            defaultChecked
-                            size="small" 
+                            size="small"
                             sx={{
                                 // color: pink[800],
                                 '&.Mui-checked': {

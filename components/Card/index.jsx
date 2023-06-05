@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
                                 <Stack spacing={-1} className={classes.paraStack}>
-                                    <p className="main--para__productTitle" style={{ textAlign: 'left' }}>
+                                    <p className={classes.productTitle} style={{ textAlign: 'left' }}>
                                         {product.name}
                                     </p>
                                     {isHovered ? (
@@ -79,7 +79,7 @@ const ProductCard = ({ product }) => {
                                         </a>
                                         
                                     ) : (
-                                        <p className="main--para__productFeature" style={{ textAlign: 'left' }}>
+                                        <p  className={classes.productFeature} style={{ textAlign: 'left' }}>
                                             {product.feature}
                                         </p>
                                     )}
@@ -104,11 +104,11 @@ const ProductCard = ({ product }) => {
                                 ) : (
                                     <>
                                         <Stack spacing={-1} className={classes.paraStack}>
-                                            <p className="main--para__productPrice" style={{ textAlign: 'right' }}>
+                                            <p className={classes.productPrice}  style={{ textAlign: 'right' }}>
                                                 {product.price}
                                             </p>
-                                            <p className="main--para__productRating" style={{ textAlign: 'right',display:'flex',justifyContent: 'end' }}>
-                                                <RatingComponent RatingInNo={product.ratingInNo}/>
+                                            <p className={classes.productRating} style={{ textAlign: 'right',display:'flex',justifyContent: 'end' }}>
+                                                <RatingComponent RatingInNo={product.ratingInNo}  />
                                             </p>
                                         </Stack>
                                     </>

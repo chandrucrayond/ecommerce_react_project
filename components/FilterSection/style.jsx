@@ -3,11 +3,18 @@ import { makeStyles } from "@mui/styles";
 export const filterSectionStyle = makeStyles((theme) => ({
     filterSectionContainer: {
         position: 'fixed',
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: '13px',
+        lineHeight: '18px',
+        color: '#9AACB5',
     },
     filterCheckbox: {
         marginLeft: '0',
         marginBottom: '0',
         marginTop: '0',
+        opacity: '0.5',
     },
     responsiveFilter: {
         position: 'fixed !important',
@@ -19,7 +26,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
         backgroundColor: '#fff !important',
         borderRadius: '6% !important',
         fontSize: '13px !important',
-        lineHeight: '18px !important',
+        // lineHeight: '18px !important',
         fontFamily: '"Montserrat", sans-serif !important',
         fontWeight: '700 !important',
         color: '#131718 !important',
@@ -30,10 +37,23 @@ export const filterSectionStyle = makeStyles((theme) => ({
         display: 'flex !important',
         alignItems: 'center',
         justifyContent: 'start',
+        paddingTop: '0px !important',
+        paddingBottom: '0px !important',
+        marginTop: '0px !important',
+        marginBottom: '0px !important',
     },
     responsiveFilterChecked: {
         cursor: 'pointer !important',
         fontWeight: '800 !important',
         color: '#219ebc !important',
+    },
+    filterPara: {
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: '12px',
+        lineHeight: '15px',
+        letterSpacing: '0px',
+        color: '#B3C1C8',
     },
 }));

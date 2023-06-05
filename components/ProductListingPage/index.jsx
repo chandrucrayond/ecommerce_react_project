@@ -1,11 +1,12 @@
-import React,{useState} from 'react';
-import { Grid } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Grid, Typography } from '@mui/material';
 import { productListingSectionStyle } from './style';
 import ProductCard from '../Card/index';
 import { jsonData } from '../ProductsJson';
 import Fab from '@mui/material/Fab';
 import TuneIcon from '@mui/icons-material/Tune';
 import FilterSection from '../FilterSection';
+import EndOfProduct from '../EndOfProduct';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 
@@ -56,15 +57,14 @@ export default function ProductListingPage() {
       ))}
 
       <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} style={{ display: isLgScreen ? 'none' : '' }}>
-
-       
-          <TuneIcon onClick={handleToggleFilterSection}/>
-       
-
+        <TuneIcon onClick={handleToggleFilterSection} />
         {isFilterSectionOpen && <FilterSection />}
-        {/* {isFilterSectionOpen &&  <Fade in={checked}>{icon}</Fade>/>} */}
-
       </Fab>
+
+      <Grid item xs={12} style={{textAlign: 'center', paddingTop: 0,}}>
+        <EndOfProduct />
+      </Grid>
+
     </Grid>
   );
 }

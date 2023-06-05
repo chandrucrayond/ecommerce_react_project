@@ -73,7 +73,8 @@ export const viewProductModalStyle = makeStyles((theme) => ({
     justifyContent: 'end',
   },
   color: {
-    alignItems: 'baseline',
+    alignItems: 'center !important',
+    
   },
   display: {
     alignItems: 'baseline',
@@ -117,14 +118,33 @@ export const viewProductModalStyle = makeStyles((theme) => ({
 
   paraInModal: {
     display: 'inline !important',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '12px',
+    lineHeight: '15px',
+    letterSpacing: '0px',
+    color: '#4e6e7e',
   },
 
   paraHeadingInModal: {
-    // display: 'inline !important',
     marginTop: '20px !important',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: '14px',
+    lineHeight: '18px',
+    letterSpacing: '0px',
+    color: '#023047',
   },
   priceInNumber: {
     marginTop: '0px !important',
+    marginBottom: '5px !important',
+    fontWeight: '500 !important',
+    fontSize: '16px !important',
+    lineHeight: '22px !important',
+    fontFamily: 'Montserrat !important',
+    color: '#023047 !important',
   },
 
   buyNowButtonSection: {
@@ -132,17 +152,33 @@ export const viewProductModalStyle = makeStyles((theme) => ({
     justifyContent: 'end',
   },
   buyNowButton: {
-    backgroundColor: '#219ebc !important',
-    paddingTop: '8px !important',
-    paddingBottom: '8px !important',
     textAlign: 'center !important',
     whiteSpace: 'nowrap',
-    // width: '50px !important',
-    // height: '40px !important',
-    color: '#FFFFFF !important',
-    width: '97px',
-    height: '42px',
+    textTransform: 'capitalize !important',
+    height: '35px',
+    alignItems: 'center !important',
+    fontWeight: '600 !important',
+    fontSize: '12px !important',
+    fontFamily: 'Montserrat !important',
+    backgroundColor: '#219ebc !important',
+    color: '#ffffff !important',
+    borderRadius: '4px !important'
+  },
+  paraHeading: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    fontSize: '20px',
+    lineHeight: '24px',
+    letterSpacing: '0px',
+    color: '#023047',
+  },
+  colorFlex: {
+    display: 'flex',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
+
+
 
 }));

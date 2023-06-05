@@ -4,17 +4,10 @@ import { makeStyles } from '@mui/styles';
 
 const ratingContainer = {
     display: 'flex',
-   
-    // alignItems: 'start',
-    // alignContent: 'center',
     padding: '0',
     margin: '0',
     backgroundColor: 'transparent',
     height: '20px',
-    // objectFit: 'contain',
-    // alignSelf: 'center',
-    // gridTemplateColumn: 'auto auto',
-    // gridTemplateRow: 'auto',
 };
 
 
@@ -37,6 +30,7 @@ const styles = {
         backgroundColor: 'transparent',
         alignSelf: 'flex-start',
     },
+ 
 };
 
 export default function RatingComponent({ RatingInNo }) {
@@ -73,10 +67,17 @@ export default function RatingComponent({ RatingInNo }) {
 
         <Box style={ratingContainer}>
             <Typography variant="body2" >
-                {starsJSX}  
+                {starsJSX}
             </Typography>
-            <Typography variant="body2" sx={{ lineHeight: 'unset', marginLeft: 1, }}>
-             (1.2K)
+            <Typography variant="body2" sx={{
+                lineHeight: 'unset', marginLeft: 1, fontFamily: 'Montserrat',
+                fontStyle: 'normal',
+                fontWeight: 'normal',
+                fontSize: '11px',
+                lineHeight: '15px',
+                color: '#b3c1c8',
+            }}>
+                (1.2K)
             </Typography>
         </Box>
 

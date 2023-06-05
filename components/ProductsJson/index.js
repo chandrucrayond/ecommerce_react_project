@@ -12,6 +12,7 @@ export const jsonData = [
     rating: "1.2k",
     ratingInNo: 3.5,
     color: ["Black", "White", "Blue"],
+    colorInHex: ["#2D3735","#E9ECEF","#219EBC"],
     backgroundColor: "#E3F7F4",
     display: [
       "Full-screen 6.1-inch (156 mm)1 display, up to 60 Hz",
@@ -48,6 +49,7 @@ export const jsonData = [
     rating: "1.2k",
     ratingInNo: 4,
     color: ["Black", "White", "Blue"],
+    colorInHex: ["#2D3735","#E9ECEF","#219EBC"],
     backgroundColor: "#EBF5F3",
     display: [
       "Full-screen 6.1-inch (156 mm)1 display, up to 60 Hz",
@@ -85,6 +87,7 @@ export const jsonData = [
     rating: "1.2k",
     ratingInNo: 4.5,
     color: ["Black", "White", "Blue"],
+    colorInHex: ["#2D3735","#E9ECEF","#219EBC"],
     backgroundColor: "#F7F7ED",
     display: [
       "Full-screen 6.1-inch (156 mm)1 display, up to 60 Hz",

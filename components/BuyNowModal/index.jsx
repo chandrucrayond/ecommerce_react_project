@@ -31,7 +31,21 @@ const inputBuyNow = {
 };
 
 const inputTextfield = {
-    marginTop: '5px',
+   
+    marginTop: '10px !important',
+    background: '#ffffff !important',
+    backgroundPosition: '0% 0% !important',
+    backgroundRepeat: 'no-repeat !important',
+    backgroundSize: 'padding-box !important',
+    border: '1px solid #e9ecef !important',
+    borderRadius: '4px !important',
+    fontStyle: 'normal !important',
+    fontWeight: '600 !important',
+    fontSize: '12px !important',
+    lineHeight: '15px !important',
+    fontFamily: 'Montserrat !important',
+    letterSpacing: '0px !important',
+    color: '#023047 !important',
 };
 
 const payAmountButton = {
@@ -109,7 +123,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                     <Box component="span" className={classes.modalBody} >
                         <Grid container sx={{ marginTop: '20px', }}>
                             <Grid item xs={8} sx={{ display: 'flex', flexDirection: 'column', }} >
-                                <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', }}>
+                                <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px',paddingBottom: '20px',}}>
                                     <Grid item xs={4}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={4} sx={{ paddingRight: 0, justifyContent: 'center', display: 'flex', }}>
@@ -120,10 +134,10 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                 />
                                             </Grid>
                                             <Grid item xs={6} sx={{ paddingLeft: 0, }}>
-                                                <Typography variant="h6" >
+                                                <Typography variant="h6" className={classes.productHeading}>
                                                     {productData.name}
                                                 </Typography>
-                                                <Typography variant="body2">
+                                                <Typography variant="body2" className={classes.productSerialNo}>
                                                     {productData.serialNo}
                                                 </Typography>
                                             </Grid>
@@ -133,21 +147,21 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                         </Grid>
                                     </Grid>
 
-                                    <Grid item xs={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }}>
+                                    <Grid item xs={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
 
-                                        <Typography variant="body2">
+                                        <Typography variant="body2" className={classes.productSpeciality}>
                                             Black | 128GB
                                         </Typography>
 
                                     </Grid>
-                                    <Grid item xs={2} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }}>
-                                        <Typography variant="body2">
+                                    <Grid item xs={2} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
+                                        <Typography variant="body2" className={classes.productSpeciality}>
                                             1 Qty
                                         </Typography>
 
                                     </Grid>
                                     <Grid item xs={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }}>
-                                        <Typography variant="body2">
+                                        <Typography variant="body2"  className={classes.productPriceInHeadingSection}>
                                             {productData.price}
                                         </Typography>
                                     </Grid>
@@ -190,17 +204,17 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                     </Box>
 
                                 ) : (
-                                    <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', marginTop: '20px', padding: '20px', }}>
+                                    <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', marginTop: '20px', padding: '20px', }} className={classes.formInputsSection}>
                                         <Grid container>
                                             <Grid container>
                                                 <Grid item xs={6}>
-                                                    <Typography variant="body" >
+                                                    <Typography variant="body" className={classes.addAddress}>
                                                         ADD ADDRESS
                                                     </Typography>
                                                 </Grid>
                                                 <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end', cursor: 'pointer', color: '#219EBC' }}>
 
-                                                    <Typography variant="body" onClick={handleSaveAddressClick}>
+                                                    <Typography variant="body" onClick={handleSaveAddressClick} className={classes.saveAddress}>
                                                         SAVE ADDRESS
                                                     </Typography>
 
@@ -209,22 +223,44 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid container sx={{ marginTop: '20px', }}>
 
-                                                <Grid item xs={6}  >
-                                                    <Typography variant="body2">
+                                                <Grid item xs={6} >
+                                                    <Typography variant="body2" className={classes.formHeading}>
                                                         Name
                                                     </Typography>
                                                     <TextField
                                                         type="text"
                                                         variant="outlined"
                                                         placeholder="Amy Jackson"
-                                                        sx={inputTextfield}
                                                         size="small"
                                                         value={name}
                                                         onChange={handleNameChange}
+                                                        InputProps={{
+                                                            className: `${classes.formInputs} ${classes.formInputsName}`,
+                                                        }}
+                                                        // sx={{
+                                                        //     width: '90% !important',
+                                                        //     outline: 'none !important',
+                                                        //     cursor: 'pointer !important',
+                                                        //     '&:hover': {
+                                                        //       backgroundColor: '#219ebc1a !important',
+                                                        //       cursor: 'pointer !important',
+                                                        //     },
+                                                        //     '&:hover fieldset': {
+                                                        //       borderColor: '#219ebc !important',
+                                                        //     },
+                                                        //     '& input:focus + fieldset': {
+                                                        //       borderColor: '#219ebc !important',
+                                                        //       boxShadow: 'none !important',
+                                                        //     },
+                                                        //     '& input:focus': {
+                                                        //       caretColor: '#219ebc !important',
+                                                        //     },
+                                                        //   }}
+                                                        fullWidth
                                                     />
                                                 </Grid>
                                                 <Grid item xs={6}>
-                                                    <Typography variant="body2">
+                                                    <Typography variant="body2" className={classes.formHeading}>
                                                         Contact Number
                                                     </Typography>
                                                     <TextField
@@ -234,35 +270,42 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                         inputProps={{
                                                             pattern: "[0-9]{10}",
                                                         }}
-                                                        sx={inputTextfield}
                                                         fullWidth
                                                         size="small"
                                                         value={mobile}
                                                         onChange={handleMobileChange}
+                                                        InputProps={{
+                                                            className: `${classes.formInputs} ${classes.formInputAddress} `
+                                                            
+                                                        }}
                                                     />
 
                                                 </Grid>
                                             </Grid>
                                             <Grid container sx={{ marginTop: '20px', }}>
                                                 <Grid item xs={12}>
-                                                    <Typography variant="body2" className="modal--label__address">
+                                                    <Typography variant="body2"  className={classes.formHeading}>
                                                         Address
                                                     </Typography>
                                                     <TextField
                                                         type="text"
                                                         variant="outlined"
                                                         placeholder="Dubai main road, Dubai cross street"
-                                                        sx={inputTextfield}
                                                         size="small"
                                                         fullWidth
                                                         value={address}
                                                         onChange={handleAddressChange}
+                                                        InputProps={{
+                                                            className: `${classes.formInputs} ${classes.formInputAddress} `
+                                                            
+                                                        }}
+                                                        
                                                     />
                                                 </Grid>
                                             </Grid>
                                             <Grid container sx={{ marginTop: '20px', }}>
                                                 <Grid item xs={6} >
-                                                    <Typography variant="body2">
+                                                    <Typography variant="body2" className={classes.formHeading}>
                                                         City
                                                     </Typography>
                                                     <FormControl fullWidth sx={{ width: '90%' }}>
@@ -272,17 +315,18 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             value={city}
                                                             onChange={handleCityChange}
                                                             sx={inputBuyNow}
+                                                            className={`${classes.formSelectCity}`}
                                                         >
-                                                            <MenuItem value={'Select City'}>
+                                                            <MenuItem value={'Select City'} className={classes.formSelectCity}>
                                                                 Select City
                                                             </MenuItem>
-                                                            <MenuItem value={'Chennai'}>
+                                                            <MenuItem value={'Chennai'} className={classes.formSelectCity}>
                                                                 Chennai
                                                             </MenuItem>
-                                                            <MenuItem value={'Madurai'}>
+                                                            <MenuItem value={'Madurai'} className={classes.formSelectCity}>
                                                                 Madurai
                                                             </MenuItem>
-                                                            <MenuItem value={'Kancheepuram'}>
+                                                            <MenuItem value={'Kancheepuram'} className={classes.formSelectCity}>
                                                                 Kancheepuram
                                                             </MenuItem>
 
@@ -291,10 +335,10 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                 </Grid>
 
                                                 <Grid item xs={6} >
-                                                    <Typography variant="body2">
+                                                    <Typography variant="body2" className={classes.formHeading}>
                                                         Country
                                                     </Typography>
-                                                    <FormControl fullWidth>
+                                                    <FormControl fullWidth >
                                                         <Select
                                                             id="selectedCountry"
                                                             labelId="my-select-label"
@@ -302,19 +346,18 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             onChange={handleCountryChange}
                                                             sx={inputBuyNow}
                                                             variant="outlined"
-
-                                                        >
-
-                                                            <MenuItem value={'Select Country'}>
+                                                            className={classes.formSelectCountry}
+                                                        >                          
+                                                            <MenuItem value={'Select Country'} className={classes.formSelectCountry}>
                                                                 Select Country
                                                             </MenuItem>
-                                                            <MenuItem value={'Kailasha'}>
+                                                            <MenuItem value={'Kailasha'} className={classes.formSelectCountry}>
                                                                 Kailasha
                                                             </MenuItem>
-                                                            <MenuItem value={'India'}>
+                                                            <MenuItem value={'India'} className={classes.formSelectCountry}>
                                                                 India
                                                             </MenuItem>
-                                                            <MenuItem value={'China'}>
+                                                            <MenuItem value={'China'} className={classes.formSelectCountry}>
                                                                 China
                                                             </MenuItem>
 
@@ -334,7 +377,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'20px'}}>
                                             <Grid item xs={12}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summaryHeading}>
                                                     INVOICE SUMMARY
                                                 </Typography>
                                             </Grid>
@@ -343,12 +386,12 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={6}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubHeading}>
                                                    Actual amuont
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubPara}>
                                                 ${Number(productData.priceInNumber) + 60}.00
                                                 </Typography>
                                             </Grid>
@@ -357,12 +400,12 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={6}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubHeading}>
                                                    Discount
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubPara}>
                                                    $60.00
                                                 </Typography>
                                             </Grid>
@@ -371,12 +414,12 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={6}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubHeading}>
                                                   Billing amount
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summarySubPara}>
                                                    ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
@@ -385,12 +428,12 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={6}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summaryTotalHeading}>
                                                   Total amount
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
-                                                <Typography variant="body2" className="modal--label__address">
+                                                <Typography variant="body2" className={classes.summaryTotalPara}>
                                                 ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
@@ -399,8 +442,8 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                         <Grid container sx={{marginTop:'16px'}}>
                                             <Grid item xs={12}>
-                                                <Button variant="contained" style={payAmountButton} fullWidth>
-                                                  Pay  ${productData.priceInNumber}.00
+                                                <Button variant="contained" style={payAmountButton} className={classes.summaryPayAmount} fullWidth>
+                                                ${productData.priceInNumber}.00
                                                 </Button>
                                             </Grid>
                                         </Grid>

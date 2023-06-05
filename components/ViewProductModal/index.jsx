@@ -4,12 +4,13 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Container from '@mui/material/Container';
 import { viewProductModalStyle } from "./style";
-import { Grid, Stack } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import RatingComponent from '../RatingComponent/index';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
-
+import BuyNowModal from '../BuyNowModal';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 const theme = createTheme({
   breakpoints: {
@@ -62,6 +63,17 @@ export default function ViewProductModal({ open, handleClose, productData }) {
     }
   ]
 
+  const [bnopen, setBnopen] = React.useState(false);
+
+  const handleBnOpen = () => {
+    setBnopen(true);
+  };
+
+  const handleBnClose = () => {
+    setBnopen(false);
+    setIsHovered(false);
+  };
+
   return (
     <div>
 
@@ -76,7 +88,7 @@ export default function ViewProductModal({ open, handleClose, productData }) {
           <Container className={classes.unScrollableSections}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <p className={classes.paraInModal}>
+                <p className={`${classes.paraInModal} ${classes.paraHeading} `}>
                   {productData.name}
                 </p>
               </Grid>
@@ -113,19 +125,25 @@ export default function ViewProductModal({ open, handleClose, productData }) {
           <Container className={classes.scrollableSections} sx={scrollableSectionStyle}>
             <Grid container spacing={10} className={classes.color}>
 
-              <Grid item xs={3} >
+              <Grid item xs={3}>
                 <p className={classes.paraHeadingInModal}>
                   Color
                 </p>
               </Grid>
 
-              {productData.color.map((color, index) => (
-                <Grid item xs={2} key={index}>
-                  <p className={classes.paraInModal}>
-                    {color}
-                  </p>
-                </Grid>
-              ))}
+              {productData.color.map((color, index) => {
+                const colorInHex = productData.colorInHex[index];
+                return (
+                  <Grid item xs={2} key={index} >
+                    <Box className={classes.colorFlex}>
+                    <FiberManualRecordIcon sx={{ color: colorInHex }} />
+                    <p className={classes.paraInModal}>
+                      {color}
+                    </p>
+                    </Box>
+                  </Grid>
+                );
+              })}
             </Grid>
 
 
@@ -252,18 +270,19 @@ export default function ViewProductModal({ open, handleClose, productData }) {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <Grid item>
-                  <p className={`${classes.priceInNumber}`}>
+                  <Typography className={`${classes.priceInNumber}`}>
                     $ {productData.priceInNumber}
-                  </p>
+                  </Typography>
                 </Grid>
                 <Grid item>
-                  <p className={`${classes.ratingInNo}`} style={{justifyContent: 'unset',}}>
+                  <Typography className={`${classes.ratingInNo}`} style={{ justifyContent: 'unset', }}>
                     <RatingComponent RatingInNo={productData.ratingInNo} />
-                  </p>
+                  </Typography>
                 </Grid>
               </Grid>
               <Grid item xs={6} className={`${classes.buyNowButtonSection}`}>
-                <Button onClick={handleClose} className={`${classes.buyNowButton}`}>Buy Now</Button>
+                <BuyNowModal open={bnopen} handleClose={handleBnClose} productData={productData} />
+                <Button onClick={handleBnOpen} className={`${classes.buyNowButton}`}>Buy Now</Button>
               </Grid>
             </Grid>
           </Container>
