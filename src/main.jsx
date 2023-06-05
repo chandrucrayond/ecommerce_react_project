@@ -28,6 +28,15 @@ const App = () => {
 
   const router = createBrowserRouter([
     {
+      path: "/login",
+      errorElement: <ErrorPage />,
+      element: (
+        <Protected isSignedIn={isSignedIn}>
+          <CreateAccount onLogin={handleLogin} />
+        </Protected>
+      ),
+    },
+    {
       path: "/",
       errorElement: <ErrorPage />,
       element: (
@@ -42,15 +51,7 @@ const App = () => {
         },     
       ],
     },
-    {
-      path: "/login",
-      errorElement: <ErrorPage />,
-      element: (
-        <Protected isSignedIn={isSignedIn}>
-          <CreateAccount onLogin={handleLogin} />
-        </Protected>
-      ),
-    },
+   
     {
       path: "/example",
       errorElement: <ErrorPage />,
