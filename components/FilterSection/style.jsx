@@ -9,6 +9,8 @@ export const filterSectionStyle = makeStyles((theme) => ({
         fontSize: '13px',
         lineHeight: '18px',
         color: '#9AACB5',
+        left: '130px',
+        zIndex: '100',
     },
     filterCheckbox: {
         marginLeft: '0',
@@ -22,7 +24,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
         bottom: '90px !important',
         transition: 'all 0.5s ease !important',
         boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5) !important',
-        padding: '20px !important',
+        padding: '15px !important',
         backgroundColor: '#fff !important',
         borderRadius: '6% !important',
         fontSize: '13px !important',
@@ -45,7 +47,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
     },
     responsiveFilterChecked: {
         cursor: 'pointer !important',
-        fontWeight: '800 !important',
+        fontWeight: '700 !important',
         color: '#219ebc !important',
     },
     filterPara: {
@@ -59,10 +61,10 @@ export const filterSectionStyle = makeStyles((theme) => ({
     },
     HeadphonesFilter: {
     position: 'relative !important',
-    bottom: '20px !important',
+    // bottom: '20px !important',
     },
     AccessoriesFilter: {
         position: 'relative !important',
-        bottom: '40px !important',
+        // bottom: '40px !important',
     },
 }));

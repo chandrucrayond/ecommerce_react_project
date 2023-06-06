@@ -40,11 +40,11 @@ export default function FilterSection() {
         <Box
             className={`${classes.filterSectionContainer}`}>
 
-            <p  style={{
+            <p style={{
                 display: isMdScreen ? 'none' : 'block',
                 position: 'relative',
-                left: '12px',             
-            }}  className={`${classes.filterPara}`}>Filters</p>
+                left: '12px',
+            }} className={`${classes.filterPara}`}>Filters</p>
             <form action="/action_page.php">
                 <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
                     <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
@@ -61,9 +61,15 @@ export default function FilterSection() {
                                 },
                             }}
                         />
-                        <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}>Phones</label>
+                        <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}
+                            onClick={() => {
+                                setIsPhonesChecked(!isPhonesChecked);
+                                handleHeadphonesCheckboxChange();
+                            }}
+                            style={{ cursor: 'pointer', }}
+                        >Phones</label>
                     </Box>
-                    <br />
+                    {isMdScreen ? (' ') : (<br />)}
                     <Box className={`${classes.responsiveFilterContents} ${classes.HeadphonesFilter}`}>
                         <Checkbox
                             {...label}
@@ -78,9 +84,16 @@ export default function FilterSection() {
                                 },
                             }}
                         />
-                        <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}>Headphones</label>
+                        <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}
+                            onClick={() => {
+                                setIsHeadphonesChecked(!isHeadphonesChecked);
+                                handleHeadphonesCheckboxChange();
+                            }}
+                            style={{ cursor: 'pointer', }}
+                        >Headphones</label>
                     </Box>
-                    <br />
+                    {/* <br /> */}
+                    {isMdScreen ? (' ') : (<br />)}
                     <Box className={`${classes.responsiveFilterContents} ${classes.AccessoriesFilter}`}>
                         <Checkbox
                             {...label}
@@ -95,7 +108,15 @@ export default function FilterSection() {
                                 },
                             }}
                         />
-                        <label className={isAccessoriesChecked ? classes.responsiveFilterChecked : ''}>Accessories</label>
+                        <label className={isAccessoriesChecked ? classes.responsiveFilterChecked : ''}
+                            onClick={() => {
+                                setIsAccessoriesChecked(!isAccessoriesChecked);
+                                handleAccessoriesCheckboxChange();
+                            }}
+                            style={{ cursor: 'pointer', }}
+                        >
+                            Accessories
+                        </label>
                     </Box>
                 </Box>
             </form>

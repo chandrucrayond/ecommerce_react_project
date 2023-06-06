@@ -5,17 +5,58 @@ export const viewProductModalStyle = makeStyles((theme) => ({
 
   modal: {
     paddingBottom: '5px !important',
+    overflowY: 'hidden',
 
+    "& .css-1h478x1-MuiGrid-root": {
+      display: "flex",
+    },
+
+    "& .css-nqk07s-MuiGrid-root::-webkit-scrollbar": {
+      width: '7px',
+    },
+
+    "& .css-nqk07s-MuiGrid-root::-webkit-scrollbar-track": {
+      boxShadow: 'inset 0px 0px 20px #b3c1c8',
+      height: '10px',
+    },
+
+    "& .css-nqk07s-MuiGrid-root::-webkit-scrollbar-thumb": {
+      backgroundColor: '#219ebc',
+    },
+
+    "& .css-x8sx2p-MuiGrid-root": {
+      paddingRight: 0,
+    },
+
+    "& .css-1osj8n2-MuiGrid-root": {
+      paddingRight: "10px",
+    },
+
+    "& .css-nqk07s-MuiGrid-root": {
+      paddingLeft: "10px",
+    },
+
+    "& .css-mhc70k-MuiGrid-root>.MuiGrid-item": {
+      paddingLeft: "25px",
+    },
+
+    "& .css-mhc70k-MuiGrid-root>.MuiGrid-item": {
+      alignItems: 'end',
+    },
+    "& .css-e784if-MuiTypography-root": {
+      display: 'flex',
+    },
   },
   outlineViewProductModal: {
     borderRadius: '5px !important',
     outline: 'none !important',
     // maxWidth: '120vw',
     height: '90vh',
-    overflow: 'hidden',
+    overflowY: 'hidden',
     alignContent: 'center',
     justifyContent: 'center',
-    position: 'fixed',
+   
+    // position: 'fixed',
     '&:focus-visible': {
       border: 'none !important',
       outline: 'none !important',
@@ -38,31 +79,20 @@ export const viewProductModalStyle = makeStyles((theme) => ({
     },
   },
   carousel: {
-    display: 'grid',
-    gridTemplateColumns: 'auto auto auto',
-    gridTemplateRows: 'auto',
-    justifyContent: 'center',
-    // right: '50px',
-    width: ' 100% !important',
+    width: ' 100px !important',
     height: '150px !important',
-    paddingBottom: '20px',
-
   },
 
 
   carouselSection: {
-    // display: 'flex !important',
-    // display: 'flex !important',
-    // justifyContent: 'center !important',
+    paddingBottom: '100px !important',
     width: '120px !important',
     height: '150px !important',
   },
 
   carouselImage: {
-    // display: 'flex !important',
-    // justifyContent: 'center !important',
-    width: '125px !important',
-    height: '150px !important',
+    maxWidth: '125px !important',
+    maxHeight: '150px !important',
     position: 'relative !important',
     right: '60px !important',
 
@@ -74,7 +104,7 @@ export const viewProductModalStyle = makeStyles((theme) => ({
   },
   color: {
     alignItems: 'center !important',
-    
+
   },
   display: {
     alignItems: 'baseline',
@@ -100,17 +130,17 @@ export const viewProductModalStyle = makeStyles((theme) => ({
     paddingTop: '30px',
     overflowY: 'auto',
     overflowX: 'hidden',
-    // minHeight: '150px',
-    // maxHeight: '200px',
   },
+
   unScrollableSections: {
     borderBottom: '1px solid #e6e2e2',
-
+    paddingLeft: '0 !important',
+    paddingRight: '0 !important',
+    paddingBottom: '10px !important',
   },
 
   unScrollableSections2: {
     paddingTop: '10px !important',
-    paddingBottom: '20px !important',
     borderTop: '1px solid #e6e2e2',
     minHeight: '30px',
     maxHeight: '100px',
@@ -150,6 +180,7 @@ export const viewProductModalStyle = makeStyles((theme) => ({
   buyNowButtonSection: {
     display: 'flex',
     justifyContent: 'end',
+    paddingBottom: '7px',
   },
   buyNowButton: {
     textAlign: 'center !important',
@@ -172,12 +203,16 @@ export const viewProductModalStyle = makeStyles((theme) => ({
     lineHeight: '24px',
     letterSpacing: '0px',
     color: '#023047',
+    paddingLeft: '10px',
   },
   colorFlex: {
     display: 'flex',
     // justifyContent: 'center',
     alignItems: 'center',
   },
+  priceAndRating:{
+    paddingLeft: '25px !important',
+  }
 
 
 

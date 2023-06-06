@@ -70,6 +70,9 @@ export const createAccountStyle = makeStyles((theme) => ({
           borderRadius: '4px !important',
           marginBottom: '7px !important',
         },
+        inputPasswordSmallSzie:{
+          fontWeight: '600 !important',
+        },
         submitButton: {
           font: 'normal normal 700 14px/18px Montserrat !important',
           letterSpacing: '0px !important',
@@ -168,6 +171,8 @@ export const createAccountStyle = makeStyles((theme) => ({
           fontSize: '15px !important',
           marginTop: '5px !important',
         },
-        
+        passwordError: {
+          bottom:'25px',
+        },
       
 }));

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Grid, CircularProgress, Snackbar, Alert } from "@mui/material";
 import { createAccountStyle } from "./style";
 import { useNavigate } from "react-router-dom";
@@ -13,18 +13,28 @@ function CreateAccount({ onLogin }) {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
     const navigate = useNavigate();
-
     const [loading, setLoading] = useState(false);
     const [openSnackBar, setOpenSnackBar] = React.useState(false);
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleTogglePassword = () => {
+      setShowPassword(!showPassword);
+    };
+
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleToggleConfirmPassword = () => {
+      setShowConfirmPassword(!showConfirmPassword);
+    };
+
     const handleCloseSnackBar = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
         setOpenSnackBar(false);
-      };
+    };
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -40,9 +50,9 @@ function CreateAccount({ onLogin }) {
         ) {
             setInputValues();
             setLoading(true);
-           
+
             setTimeout(function () {
-               
+
                 var successMessage = document.getElementById("successMessage");
                 successMessage.classList.add("show");
                 setTimeout(function () {
@@ -55,6 +65,8 @@ function CreateAccount({ onLogin }) {
         }
     }
 
+
+
     function setInputValues() {
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
@@ -62,7 +74,7 @@ function CreateAccount({ onLogin }) {
     }
 
     function validateName() {
-        let isValid = true;
+        var isValid = true;
         if (username.trim() === "") {
             setNameError("Name is required");
             isValid = false;
@@ -75,6 +87,7 @@ function CreateAccount({ onLogin }) {
     }
 
     function validateEmail() {
+        var isValid = true;
         if (email.trim() === "") {
             setEmailError('Email is required');
             isValid = false;
@@ -95,12 +108,14 @@ function CreateAccount({ onLogin }) {
     }
 
     function validatePassword() {
+        var isValid = true;
+        console.log("validatePassword function is called");
         if (password.trim() === "") {
             setPasswordError('Password is required');
             isValid = false;
             return false;
-        } 
-       else if (password.length < 8) {
+        }
+        else if (password.length < 8) {
             setPasswordError('Password must be at least 8 characters long');
             isValid = false;
             return false;
@@ -112,7 +127,13 @@ function CreateAccount({ onLogin }) {
     }
 
     function validateConfirmPassword() {
-        if (confirmPassword !== password) {
+        var isValid = true;
+        if (confirmPassword.trim() === "") {
+            setConfirmPasswordError('Retype Password is required');
+            isValid = false;
+            return false;
+        }
+        else if (confirmPassword !== password) {
             setConfirmPasswordError('Passwords do not match');
             isValid = false;
             return false;
@@ -131,6 +152,9 @@ function CreateAccount({ onLogin }) {
             onLogin();
             navigate("../products");
         }, 1500);
+   
+
+  
     }
 
     return (
@@ -187,7 +211,7 @@ function CreateAccount({ onLogin }) {
                                                 validateName();
                                             }}
                                         />
-                                        {nameError && <div className={classes.errorMessage}>{nameError}</div>}
+                                        <div className={classes.errorMessage}>{nameError}</div>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="email" className={classes.label}>
@@ -199,20 +223,26 @@ function CreateAccount({ onLogin }) {
                                             id="email"
                                             name="email"
                                             value={email}
-                                            onChange={(e) =>{ 
+                                            onChange={(e) => {
                                                 setEmail(e.target.value);
                                                 validateEmail();
                                             }}
                                         />
-                                        {emailError && <div className={classes.errorMessage}>{emailError}</div>}
+                                       <div className={classes.errorMessage}>{emailError}</div>
                                     </div>
                                     <div className="mb-3 createAccount--container__password">
                                         <label htmlFor="password" className={classes.label}>
                                             Password
                                         </label>
                                         <input
-                                            type="password"
-                                            className={`${classes.input} ${classes.inputPassword} form-control createAccount--input__password py-2`}
+                                            type={showPassword ? 'text' : 'password'}
+                                            className={`
+                                            ${classes.input} 
+                                            ${classes.inputPassword} 
+                                            ${
+                                                showPassword ? classes.inputPasswordSmallSzie : ''
+                                              }
+                                            `}
                                             id="password"
                                             name="password"
                                             value={password}
@@ -225,17 +255,24 @@ function CreateAccount({ onLogin }) {
                                             src="assets/visibility@2x.png"
                                             alt="visibility image"
                                             className={classes.eyeIcon}
+                                            onClick={handleTogglePassword}
                                         />
-                                        {passwordError && <div className={classes.errorMessage}>{passwordError}</div>}
+                                        <div className={`${classes.errorMessage} ${classes.passwordError}`}>{passwordError}</div>
                                     </div>
                                     <div className="mb-3 createAccount--container__password">
                                         <label htmlFor="retype-password" className={classes.label}>
                                             Retype Password
                                         </label>
                                         <input
-                                            type="password"
-                                            className={`${classes.input} ${classes.inputPassword} form-control createAccount--input__password py-2`}
-                                            id="retype-password"
+                                             type={showConfirmPassword ? 'text' : 'password'}
+                                             className={`
+                                             ${classes.input} 
+                                             ${classes.inputPassword} 
+                                             ${
+                                                 showConfirmPassword ? classes.inputPasswordSmallSzie : ''
+                                               }
+                                             `}
+                                             id="retype-password"
                                             name="retype-password"
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -244,8 +281,9 @@ function CreateAccount({ onLogin }) {
                                             src="assets/visibility@2x.png"
                                             alt="visibility image"
                                             className={classes.eyeIcon}
+                                            onClick={handleToggleConfirmPassword}
                                         />
-                                        {confirmPasswordError && <div className={classes.errorMessage}>{confirmPasswordError}</div>}
+                                       <div className={`${classes.errorMessage} ${classes.passwordError}`}>{confirmPasswordError}</div>
                                     </div>
                                     <div
                                         // type="submit"

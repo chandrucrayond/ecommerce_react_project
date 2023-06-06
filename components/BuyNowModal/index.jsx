@@ -122,9 +122,9 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                     />
                     <Box component="span" className={classes.modalBody} >
                         <Grid container sx={{ marginTop: '20px', }}>
-                            <Grid item xs={8} sx={{ display: 'flex', flexDirection: 'column', }} >
+                            <Grid item xs={12} lg={8} sx={{ display: 'flex', flexDirection: 'column', }} >
                                 <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px',paddingBottom: '20px',}}>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={12} lg={4}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={4} sx={{ paddingRight: 0, justifyContent: 'center', display: 'flex', }}>
                                                 <img

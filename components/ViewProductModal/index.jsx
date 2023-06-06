@@ -11,6 +11,7 @@ import RatingComponent from '../RatingComponent/index';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import BuyNowModal from '../BuyNowModal';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import SimpleSlider from '../ReactSlide/index';
 
 const theme = createTheme({
   breakpoints: {
@@ -74,9 +75,10 @@ export default function ViewProductModal({ open, handleClose, productData }) {
     setIsHovered(false);
   };
 
+
   return (
     <div>
-
+  <BuyNowModal open={bnopen} handleClose={handleBnClose} productData={productData} />
       <Modal
         open={open}
         onClose={handleClose}
@@ -84,9 +86,9 @@ export default function ViewProductModal({ open, handleClose, productData }) {
         aria-describedby="modal-modal-description"
         className={classes.modal}
       >
-        <Container sx={style} className={classes.outlineViewProductModal}>
-          <Container className={classes.unScrollableSections}>
-            <Grid container spacing={2}>
+        <Grid container sx={style} className={classes.outlineViewProductModal}>
+          <Grid container className={classes.unScrollableSections}>
+            <Grid container spacing={2} >
               <Grid item xs={6}>
                 <p className={`${classes.paraInModal} ${classes.paraHeading} `}>
                   {productData.name}
@@ -101,29 +103,18 @@ export default function ViewProductModal({ open, handleClose, productData }) {
                   style={{ cursor: 'pointer', }}
                 />
               </Grid>
+
+
+              <Grid item xs={12} style={{ marginTop: '10px', }}>
+
+                <SimpleSlider productData={productData} />
+              </Grid>
             </Grid>
-
-            <Carousel className={classes.carousel}
-              IndicatorIcon="" // Previous Example
-              navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
-                style: {
-                  opacity: "0.1",
-                }
-              }}
-
-            >
-              {items.map((item) => (
-                <div className={classes.carouselSection}>
-                  <img src={'../' + item.url} alt={item.url} key={item.id} className={classes.carouselImage} />
-                </div >
-              ))}
-
-            </Carousel>
-          </Container>
+          </Grid>
 
 
-          <Container className={classes.scrollableSections} sx={scrollableSectionStyle}>
-            <Grid container spacing={10} className={classes.color}>
+          <Grid container className={classes.scrollableSections} sx={scrollableSectionStyle}>
+            <Grid container spacing={10} className={classes.color} >
 
               <Grid item xs={3}>
                 <p className={classes.paraHeadingInModal}>
@@ -131,19 +122,23 @@ export default function ViewProductModal({ open, handleClose, productData }) {
                 </p>
               </Grid>
 
-              {productData.color.map((color, index) => {
-                const colorInHex = productData.colorInHex[index];
-                return (
-                  <Grid item xs={2} key={index} >
-                    <Box className={classes.colorFlex}>
-                    <FiberManualRecordIcon sx={{ color: colorInHex }} />
-                    <p className={classes.paraInModal}>
-                      {color}
-                    </p>
-                    </Box>
-                  </Grid>
-                );
-              })}
+              <Grid item xs={9} flexDirection="row">
+                {productData.color.map((color, index) => {
+                  const colorInHex = productData.colorInHex[index];
+                  return (
+
+                    <Grid container xs={4}>
+                      <Grid item className={classes.colorFlex}>
+                        <FiberManualRecordIcon sx={{ color: colorInHex }} />
+                        <p className={classes.paraInModal}>
+                          {color}
+                        </p>
+                      </Grid>
+                    </Grid>
+
+                  );
+                })}
+              </Grid>
             </Grid>
 
 
@@ -262,13 +257,13 @@ export default function ViewProductModal({ open, handleClose, productData }) {
 
 
 
-          </Container>
+          </Grid>
 
 
 
-          <Container className={classes.unScrollableSections2}>
+          <Grid container className={classes.unScrollableSections2}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={6} className={`${classes.priceAndRating}`}>
                 <Grid item>
                   <Typography className={`${classes.priceInNumber}`}>
                     $ {productData.priceInNumber}
@@ -281,15 +276,14 @@ export default function ViewProductModal({ open, handleClose, productData }) {
                 </Grid>
               </Grid>
               <Grid item xs={6} className={`${classes.buyNowButtonSection}`}>
-                <BuyNowModal open={bnopen} handleClose={handleBnClose} productData={productData} />
-                <Button onClick={handleBnOpen} className={`${classes.buyNowButton}`}>Buy Now</Button>
+                  <Button onClick={handleBnOpen} className={`${classes.buyNowButton}`}>Buy Now</Button>
               </Grid>
             </Grid>
-          </Container>
+          </Grid>
 
 
 
-        </Container>
+        </Grid>
       </Modal>
 
     </div >

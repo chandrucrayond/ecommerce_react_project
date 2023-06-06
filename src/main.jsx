@@ -12,6 +12,7 @@ import '../src/index.css';
 import CreateAccount from '../components/CreateAccount/index';
 import ExampleComponent from '../components/ExampleComponent';
 // import ProductDescriptionPage from './routes/ProductDescriptionPage';
+import SimpleSlider from '../components/ReactSlide';
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/login",
-      errorElement: <ErrorPage />,
+      // errorElement: <ErrorPage />,
       element: (
         <Protected isSignedIn={isSignedIn}>
           <CreateAccount onLogin={handleLogin} />
@@ -38,11 +39,11 @@ const App = () => {
     },
     {
       path: "/",
-      errorElement: <ErrorPage />,
+      // errorElement: <ErrorPage />,
       element: (
-        <Protected isSignedIn={isSignedIn}>
+        // <Protected isSignedIn={isSignedIn}>
           <SharedLayout />
-        </Protected>
+        // </Protected>
       ),
       children: [
         {
@@ -56,7 +57,7 @@ const App = () => {
       path: "/example",
       errorElement: <ErrorPage />,
       element: (       
-          <ExampleComponent />
+          <SimpleSlider />
       ),
     },
   ]);

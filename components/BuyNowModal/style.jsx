@@ -18,6 +18,7 @@ export const buyNowStyle = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'auto',
 
   },
   modalContent: {

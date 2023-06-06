@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { productListingSectionStyle } from './style';
 import ProductCard from '../Card/index';
@@ -36,6 +36,7 @@ export default function ProductListingPage() {
     setIsFilterSectionOpen((prevState) => !prevState);
   };
 
+
   return (
     <Grid container spacing={5}>
       {productArray.map((value, index) => (
@@ -57,9 +58,10 @@ export default function ProductListingPage() {
       ))}
 
       <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} style={{ display: isLgScreen ? 'none' : '' }}>
-        <TuneIcon onClick={handleToggleFilterSection} />
-        {isFilterSectionOpen && <FilterSection />}
+        <TuneIcon onClick={handleToggleFilterSection} sx={{transition: 'none',}}/>
+        
       </Fab>
+      {isFilterSectionOpen && <FilterSection />}
 
       <Grid item xs={12} style={{textAlign: 'center', paddingTop: 0,}}>
         <EndOfProduct />
