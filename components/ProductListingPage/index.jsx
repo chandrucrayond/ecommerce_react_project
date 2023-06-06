@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { productListingSectionStyle } from './style';
 import ProductCard from '../Card/index';
@@ -30,7 +30,21 @@ export default function ProductListingPage() {
 
   const isLgScreen = useMediaQuery(() => theme.breakpoints.up('lg'));
 
+  const filterSectionRef = useRef(null);
   const [isFilterSectionOpen, setIsFilterSectionOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filterSectionRef.current && !filterSectionRef.current.contains(event.target)) {
+        setIsFilterSectionOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const handleToggleFilterSection = () => {
     setIsFilterSectionOpen((prevState) => !prevState);
@@ -57,13 +71,13 @@ export default function ProductListingPage() {
         </Grid>
       ))}
 
-      <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} style={{ display: isLgScreen ? 'none' : '' }}>
-        <TuneIcon onClick={handleToggleFilterSection} sx={{transition: 'none',}}/>
-        
+      <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} style={{ display: isLgScreen ? 'none' : '' }} className={classes.filterIconButton}
+      ref={filterSectionRef}>
+        <TuneIcon onClick={handleToggleFilterSection} />
       </Fab>
       {isFilterSectionOpen && <FilterSection />}
 
-      <Grid item xs={12} style={{textAlign: 'center', paddingTop: 0,}}>
+      <Grid item xs={12} style={{ textAlign: 'center', paddingTop: 0, }}>
         <EndOfProduct />
       </Grid>
 

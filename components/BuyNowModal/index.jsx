@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Container from '@mui/material/Container';
-import { Grid, Stack, Typography, MenuItem, TextField, Select, InputLabel, FormControl } from '@mui/material';
+import { Grid, Stack, Typography, MenuItem, TextField, Select, InputLabel, FormControl, } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import {useMediaQuery} from '@mui/material';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { buyNowStyle } from "./style";
 
@@ -16,6 +16,12 @@ const buyNowModal = {
     transform: 'translate(-50%, -50%)',
     bgcolor: '#ffffff !important',
     p: 2,
+    height: 'auto',
+    maxHeight: '95%',
+    // width: '90%',
+
+    // marginLeft: '20px',
+    // marginRight: '20px',
 };
 
 const productOverview = {
@@ -31,7 +37,7 @@ const inputBuyNow = {
 };
 
 const inputTextfield = {
-   
+
     marginTop: '10px !important',
     background: '#ffffff !important',
     backgroundPosition: '0% 0% !important',
@@ -95,13 +101,28 @@ export default function BuyNowModal({ open, handleClose, productData }) {
         setShowEditAddress(false);
     };
 
+    const theme = createTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 900,
+                lg: 1200,
+                xl: 1536,
+            },
+        },
+
+
+    });
+    const isLgScreen = useMediaQuery(() => theme.breakpoints.up('md'));
+
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <Modal
                 open={open}
                 onClose={handleClose}
-
+                scroll="paper"
             >
                 <Box component="span" sx={buyNowModal} className={classes.modalContent}>
 
@@ -123,17 +144,17 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                     <Box component="span" className={classes.modalBody} >
                         <Grid container sx={{ marginTop: '20px', }}>
                             <Grid item xs={12} lg={8} sx={{ display: 'flex', flexDirection: 'column', }} >
-                                <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px',paddingBottom: '20px',}}>
+                                <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px', paddingBottom: '20px', }}>
                                     <Grid item xs={12} lg={4}>
                                         <Grid container alignItems="center">
-                                            <Grid item xs={4} sx={{ paddingRight: 0, justifyContent: 'center', display: 'flex', }}>
+                                            <Grid item xs={5} sx={{ paddingRight: 0, justifyContent: 'center', display: 'flex', }}>
                                                 <img
                                                     src={productData.image}
                                                     alt="pixel 5 image"
                                                     style={{ width: 31, height: 38, }}
                                                 />
                                             </Grid>
-                                            <Grid item xs={6} sx={{ paddingLeft: 0, }}>
+                                            <Grid item xs={12} lg={5} sx={{ paddingLeft: 0, }}>
                                                 <Typography variant="h6" className={classes.productHeading}>
                                                     {productData.name}
                                                 </Typography>
@@ -141,27 +162,27 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                     {productData.serialNo}
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={2} sx={{ paddingLeft: 0 }}>
+                                            {/* <Grid item xs={2} sx={{ paddingLeft: 0 }}>
                                                 <p>.</p>
-                                            </Grid>
+                                            </Grid> */}
                                         </Grid>
                                     </Grid>
 
-                                    <Grid item xs={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
+                                    <Grid item xs={12} lg={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
 
                                         <Typography variant="body2" className={classes.productSpeciality}>
                                             Black | 128GB
                                         </Typography>
 
                                     </Grid>
-                                    <Grid item xs={2} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
+                                    <Grid item xs={12} lg={2} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
                                         <Typography variant="body2" className={classes.productSpeciality}>
                                             1 Qty
                                         </Typography>
 
                                     </Grid>
-                                    <Grid item xs={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }}>
-                                        <Typography variant="body2"  className={classes.productPriceInHeadingSection}>
+                                    <Grid item xs={12} lg={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }}>
+                                        <Typography variant="body2" className={classes.productPriceInHeadingSection}>
                                             {productData.price}
                                         </Typography>
                                     </Grid>
@@ -172,7 +193,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                                 {showEditAddress ? (
 
-                                    <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', marginTop: '20px', padding: '20px', marginBottom: '100px', }}>
+                                    <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', marginTop: '20px', padding: '20px', marginBottom: isLgScreen ? '100px' : '10px', }}>
                                         <Grid container>
                                             <Grid item xs={5}>
                                                 <Grid container>
@@ -195,7 +216,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                             </Grid>
                                             <Grid item xs={2} sx={{ display: 'flex', justifyContent: 'end', cursor: 'pointer', color: '#219EBC', alignItems: 'center', }}>
 
-                                                <Typography variant="body" onClick={handleEditAddressClick}>
+                                                <Typography variant="body" className={classes.editButton} onClick={handleEditAddressClick}>
                                                     EDIT
                                                 </Typography>
 
@@ -235,27 +256,9 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                         value={name}
                                                         onChange={handleNameChange}
                                                         InputProps={{
-                                                            className: `${classes.formInputs} ${classes.formInputsName}`,
+                                                            className: `${classes.formInputsName}`,
                                                         }}
-                                                        // sx={{
-                                                        //     width: '90% !important',
-                                                        //     outline: 'none !important',
-                                                        //     cursor: 'pointer !important',
-                                                        //     '&:hover': {
-                                                        //       backgroundColor: '#219ebc1a !important',
-                                                        //       cursor: 'pointer !important',
-                                                        //     },
-                                                        //     '&:hover fieldset': {
-                                                        //       borderColor: '#219ebc !important',
-                                                        //     },
-                                                        //     '& input:focus + fieldset': {
-                                                        //       borderColor: '#219ebc !important',
-                                                        //       boxShadow: 'none !important',
-                                                        //     },
-                                                        //     '& input:focus': {
-                                                        //       caretColor: '#219ebc !important',
-                                                        //     },
-                                                        //   }}
+                                                      
                                                         fullWidth
                                                     />
                                                 </Grid>
@@ -267,24 +270,21 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                         type="text"
                                                         variant="outlined"
                                                         placeholder="9999 999 999"
-                                                        inputProps={{
+                                                        InputProps={{
                                                             pattern: "[0-9]{10}",
+                                                            className: `${classes.formInputsMobile}`,
                                                         }}
                                                         fullWidth
                                                         size="small"
                                                         value={mobile}
                                                         onChange={handleMobileChange}
-                                                        InputProps={{
-                                                            className: `${classes.formInputs} ${classes.formInputAddress} `
-                                                            
-                                                        }}
                                                     />
 
                                                 </Grid>
                                             </Grid>
                                             <Grid container sx={{ marginTop: '20px', }}>
                                                 <Grid item xs={12}>
-                                                    <Typography variant="body2"  className={classes.formHeading}>
+                                                    <Typography variant="body2" className={classes.formHeading}>
                                                         Address
                                                     </Typography>
                                                     <TextField
@@ -296,10 +296,10 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                         value={address}
                                                         onChange={handleAddressChange}
                                                         InputProps={{
-                                                            className: `${classes.formInputs} ${classes.formInputAddress} `
-                                                            
+                                                            className: `${classes.formInputsMobile}`,
+
                                                         }}
-                                                        
+
                                                     />
                                                 </Grid>
                                             </Grid>
@@ -346,18 +346,18 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             onChange={handleCountryChange}
                                                             sx={inputBuyNow}
                                                             variant="outlined"
-                                                            className={classes.formSelectCountry}
-                                                        >                          
-                                                            <MenuItem value={'Select Country'} className={classes.formSelectCountry}>
+                                                            className={classes.formSelectCity}
+                                                        >
+                                                            <MenuItem value={'Select Country'} className={classes.formSelectCity}>
                                                                 Select Country
                                                             </MenuItem>
-                                                            <MenuItem value={'Kailasha'} className={classes.formSelectCountry}>
+                                                            <MenuItem value={'Kailasha'} className={classes.formSelectCity}>
                                                                 Kailasha
                                                             </MenuItem>
-                                                            <MenuItem value={'India'} className={classes.formSelectCountry}>
+                                                            <MenuItem value={'India'} className={classes.formSelectCity}>
                                                                 India
                                                             </MenuItem>
-                                                            <MenuItem value={'China'} className={classes.formSelectCountry}>
+                                                            <MenuItem value={'China'} className={classes.formSelectCity}>
                                                                 China
                                                             </MenuItem>
 
@@ -371,11 +371,20 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                 )}
 
                             </Grid>
-                            <Grid item xs={4}>
-                                <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', marginLeft: '10px', padding: '10px', }}>
+                            <Grid item xs={12} lg={4}>
+                                <Box
+                                    sx={productOverview}
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        padding: '10px',
+                                        marginLeft: isLgScreen ? '20px' : '',
+                                        marginTop: isLgScreen ? '' : '20px',
+                                    }}
+                                >
                                     <Grid container>
 
-                                        <Grid container sx={{marginTop:'20px'}}>
+                                        <Grid container sx={{ marginTop: '20px' }}>
                                             <Grid item xs={12}>
                                                 <Typography variant="body2" className={classes.summaryHeading}>
                                                     INVOICE SUMMARY
@@ -384,66 +393,66 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                         </Grid>
 
 
-                                        <Grid container sx={{marginTop:'16px'}}>
+                                        <Grid container sx={{ marginTop: '16px' }}>
                                             <Grid item xs={6}>
                                                 <Typography variant="body2" className={classes.summarySubHeading}>
-                                                   Actual amuont
+                                                    Actual amuont
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
+                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end', }}>
                                                 <Typography variant="body2" className={classes.summarySubPara}>
-                                                ${Number(productData.priceInNumber) + 60}.00
+                                                    ${Number(productData.priceInNumber) + 60}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
 
 
-                                        <Grid container sx={{marginTop:'16px'}}>
+                                        <Grid container sx={{ marginTop: '16px' }}>
                                             <Grid item xs={6}>
                                                 <Typography variant="body2" className={classes.summarySubHeading}>
-                                                   Discount
+                                                    Discount
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
+                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end', }}>
                                                 <Typography variant="body2" className={classes.summarySubPara}>
-                                                   $60.00
+                                                    $60.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
 
 
-                                        <Grid container sx={{marginTop:'16px'}}>
+                                        <Grid container sx={{ marginTop: '16px' }}>
                                             <Grid item xs={6}>
                                                 <Typography variant="body2" className={classes.summarySubHeading}>
-                                                  Billing amount
+                                                    Billing amount
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
+                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end', }}>
                                                 <Typography variant="body2" className={classes.summarySubPara}>
-                                                   ${productData.priceInNumber}.00
+                                                    ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
 
 
-                                        <Grid container sx={{marginTop:'16px'}}>
+                                        <Grid container sx={{ marginTop: '16px' }}>
                                             <Grid item xs={6}>
                                                 <Typography variant="body2" className={classes.summaryTotalHeading}>
-                                                  Total amount
+                                                    Total amount
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end',}}>
+                                            <Grid item xs={6} sx={{ display: 'flex', justifyContent: 'end', }}>
                                                 <Typography variant="body2" className={classes.summaryTotalPara}>
-                                                ${productData.priceInNumber}.00
+                                                    ${productData.priceInNumber}.00
                                                 </Typography>
                                             </Grid>
                                         </Grid>
 
 
-                                        <Grid container sx={{marginTop:'16px'}}>
+                                        <Grid container sx={{ marginTop: '16px' }}>
                                             <Grid item xs={12}>
                                                 <Button variant="contained" style={payAmountButton} className={classes.summaryPayAmount} fullWidth>
-                                                ${productData.priceInNumber}.00
+                                                    ${productData.priceInNumber}.00
                                                 </Button>
                                             </Grid>
                                         </Grid>
@@ -458,6 +467,6 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
                 </Box>
             </Modal>
-        </>
+        </ThemeProvider>
     );
 }

@@ -10,9 +10,8 @@ import ErrorPage from '../components/ErrorPage/index';
 import { createTheme } from '@mui/material/styles';
 import '../src/index.css';
 import CreateAccount from '../components/CreateAccount/index';
-import ExampleComponent from '../components/ExampleComponent';
 // import ProductDescriptionPage from './routes/ProductDescriptionPage';
-import SimpleSlider from '../components/ReactSlide';
+import ExampleComponent from '../components/ExampleComponent/index';
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -55,9 +54,8 @@ const App = () => {
    
     {
       path: "/example",
-      errorElement: <ErrorPage />,
       element: (       
-          <SimpleSlider />
+          <ExampleComponent />
       ),
     },
   ]);

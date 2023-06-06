@@ -9,12 +9,6 @@ export default function SimpleSlider({ productData }) {
   console.log(productData);
   var settings = {
     dots: false,
-    // infinite: true,
-    // cssEase: "linear",
-    // // autoplay: true,
-    // speed: 1000,
-    // autoplaySpeed: 3000,
-   
   };
 
   return (

@@ -18,14 +18,15 @@ export const buyNowStyle = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'auto',
-
+    // width: '100%',
   },
   modalContent: {
     outline: 'none',
     position: 'relative',
+    width: '90vw',
     maxWidth: '800px',
-    width: '100%',
+    maxHeight: '50vh',
+    overflowY: 'auto',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     borderRadius: theme.shape.borderRadius,
@@ -36,6 +37,7 @@ export const buyNowStyle = makeStyles({
     lineHeight: '15px !important',
     fontFamily: 'Montserrat !important',
     color: '#b3c1c8 !important',
+    overflow: 'visible',
   },
   modalTitle: {
     marginBottom: theme.spacing(2),
@@ -140,15 +142,69 @@ export const buyNowStyle = makeStyles({
     outline: 'none !important',
     cursor: 'pointer !important',
 
-    "&:hover": {
+    padding: '0',
+    marginTop: '10px !important',
+    // backgroundPosition: '0% 0%',
+    // backgroundRepeat: 'no-repeat !important',
+    // backgroundSize: 'padding-box !important',
+    borderRadius: '4px !important',
+    fontStyle: 'normal !important',
+    fontWeight: '600 !important',
+    fontSize: '12px !important',
+    lineHeight: '15px !important',
+    fontFamily: 'Montserrat !important',
+    letterSpacing: '0px !important',
+    color: '#023047 !important',
+    '&:hover': {
       backgroundColor: '#219ebc1a !important',
       cursor: 'pointer !important',
+      borderWidth: '0.5px !important',
     },
-    "&:focus": {
-      border: '0.5px solid #219ebc !important',
+    '&:hover fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+    },
+    '& input:focus + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
       boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& input:focus': {
       caretColor: '#219ebc !important',
-      cursor: 'text !important',
+    },
+  },
+  formInputsMobile: {
+    outline: 'none !important',
+    cursor: 'pointer !important',
+    padding: '0',
+    marginTop: '10px !important',
+    borderRadius: '4px !important',
+    fontStyle: 'normal !important',
+    fontWeight: '600 !important',
+    fontSize: '12px !important',
+    lineHeight: '15px !important',
+    fontFamily: 'Montserrat !important',
+    letterSpacing: '0px !important',
+    color: '#023047 !important',
+    '&:hover': {
+      backgroundColor: '#219ebc1a !important',
+      cursor: 'pointer !important',
+      borderWidth: '0.5px !important',
+    },
+    '&:hover fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+    },
+    '& input:focus + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& input:focus': {
+      caretColor: '#219ebc !important',
+
     },
   },
   formSelectCountry: {
@@ -167,26 +223,58 @@ export const buyNowStyle = makeStyles({
     lineHeight: '15px !important',
     fontFamily: 'Montserrat !important',
     letterSpacing: '0px !important',
-    color: '#4e6e7e !important',
-  },
-  formInputAddress: {
-    // display: 'block !important',
-    // marginTop: '10px !important',
-    // marginBottom: '20px !important',
-    width: '100% !important',
-    // padding: '10px !important',
     outline: 'none !important',
-
-    "&:hover": {
+    cursor: 'pointer !important',
+    padding: '0',
+    marginTop: '10px !important',
+    borderRadius: '4px !important',
+    color: '#023047 !important',
+    '&:hover': {
       backgroundColor: '#219ebc1a !important',
       cursor: 'pointer !important',
+      borderWidth: '0.5px !important',
     },
-    "&:focus": {
-      border: '0.5px solid #219ebc !important',
+    '&:hover fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+    },
+    '& input:focus + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
       boxShadow: 'none !important',
-      caretColor: '#219ebc !important',
-      cursor: 'text !important',
+      backgroundColor: '#219ebc1a !important',
     },
+    '& input:focus-within + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& input:active + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& input:target + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& input:focus-visible + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+    '& .selected + fieldset': {
+      borderColor: '#219ebc !important',
+      borderWidth: '0.5px !important',
+      boxShadow: 'none !important',
+      backgroundColor: '#219ebc1a !important',
+    },
+   
   },
 
   summaryHeading: {
@@ -203,7 +291,7 @@ export const buyNowStyle = makeStyles({
     fontWeight: '500 !important',
     fontSize: '12px !important',
     lineHeight: '15px !important',
-    fontFamily: 'Montserrat !important', 
+    fontFamily: 'Montserrat !important',
     color: '#b3c1c8 !important',
   },
   summarySubPara: {
@@ -212,7 +300,7 @@ export const buyNowStyle = makeStyles({
     fontSize: '12px !important',
     lineHeight: '15px !important',
     fontFamily: 'Montserrat !important',
-    color:' #023047 !important',
+    color: ' #023047 !important',
   },
   summaryTotalHeading: {
     fontStyle: 'normal !important',
@@ -246,7 +334,14 @@ export const buyNowStyle = makeStyles({
     paddingBottom: '8px !important',
     boxShadow: 'none !important',
   },
-
+  editButton: {
+    fontFamily: 'Montserrat !important',
+    fontSize: '12px !important',
+    lineHeight: '15px !important',
+    fontWeight: 'bold !important',
+    letterSpacing: '0px !important',
+    color: '#FB8500 !important',
+  },
 
 
 });

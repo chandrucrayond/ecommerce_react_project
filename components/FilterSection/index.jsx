@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { filterSectionStyle } from './style';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useMediaQuery, Box, Checkbox } from '@mui/material';
@@ -21,6 +21,8 @@ export default function FilterSection() {
     const [isPhonesChecked, setIsPhonesChecked] = useState(true);
     const [isHeadphonesChecked, setIsHeadphonesChecked] = useState(false);
     const [isAccessoriesChecked, setIsAccessoriesChecked] = useState(false);
+  
+
 
     const handlePhonesCheckboxChange = (event) => {
         setIsPhonesChecked(event.target.checked);
@@ -37,6 +39,7 @@ export default function FilterSection() {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     return (
+        <ThemeProvider theme={theme}>
         <Box
             className={`${classes.filterSectionContainer}`}>
 
@@ -69,7 +72,7 @@ export default function FilterSection() {
                             style={{ cursor: 'pointer', }}
                         >Phones</label>
                     </Box>
-                    {isMdScreen ? (' ') : (<br />)}
+                    
                     <Box className={`${classes.responsiveFilterContents} ${classes.HeadphonesFilter}`}>
                         <Checkbox
                             {...label}
@@ -93,7 +96,7 @@ export default function FilterSection() {
                         >Headphones</label>
                     </Box>
                     {/* <br /> */}
-                    {isMdScreen ? (' ') : (<br />)}
+                  
                     <Box className={`${classes.responsiveFilterContents} ${classes.AccessoriesFilter}`}>
                         <Checkbox
                             {...label}
@@ -122,6 +125,7 @@ export default function FilterSection() {
             </form>
 
         </Box>
+        </ThemeProvider>
 
     );
 }
