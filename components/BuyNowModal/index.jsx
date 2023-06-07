@@ -116,6 +116,20 @@ export default function BuyNowModal({ open, handleClose, productData }) {
     });
     const isLgScreen = useMediaQuery(() => theme.breakpoints.up('md'));
 
+    const menuProps = {
+        classes: {
+          list: classes.list
+        },
+        anchorOrigin: {
+          vertical: "bottom",
+            horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+            horizontal: "left"
+        },
+        getContentAnchorEl: null
+      };
 
     return (
         <ThemeProvider theme={theme}>
@@ -315,6 +329,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             value={city}
                                                             onChange={handleCityChange}
                                                             sx={inputBuyNow}
+                                                            MenuProps={menuProps}
                                                             className={`${classes.formSelectCity}`}
                                                         >
                                                             <MenuItem value={'Select City'} className={classes.formSelectCity}>
@@ -346,9 +361,10 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             onChange={handleCountryChange}
                                                             sx={inputBuyNow}
                                                             variant="outlined"
-                                                            className={classes.formSelectCity}
+                                                            MenuProps={menuProps}
+                                                            className={`${classes.select}`} 
                                                         >
-                                                            <MenuItem value={'Select Country'} className={classes.formSelectCity}>
+                                                            <MenuItem value={'Select Country'} selected className={classes.formSelectCity}>
                                                                 Select Country
                                                             </MenuItem>
                                                             <MenuItem value={'Kailasha'} className={classes.formSelectCity}>

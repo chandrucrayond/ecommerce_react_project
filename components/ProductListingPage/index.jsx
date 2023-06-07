@@ -31,6 +31,7 @@ export default function ProductListingPage() {
   const isLgScreen = useMediaQuery(() => theme.breakpoints.up('lg'));
 
   const filterSectionRef = useRef(null);
+  // const filterIconRef = useRef(null);
   const [isFilterSectionOpen, setIsFilterSectionOpen] = useState(false);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function ProductListingPage() {
         </Grid>
       ))}
 
-      {reversedProductArray.map((value, index) => (
+      {/* {reversedProductArray.map((value, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <ProductCard product={value} />
         </Grid>
@@ -69,7 +70,7 @@ export default function ProductListingPage() {
         <Grid item xs={12} sm={6} md={4} key={index}>
           <ProductCard product={value} />
         </Grid>
-      ))}
+      ))} */}
 
       <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} style={{ display: isLgScreen ? 'none' : '' }} className={classes.filterIconButton}
       ref={filterSectionRef}>

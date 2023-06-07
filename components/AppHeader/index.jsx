@@ -119,23 +119,21 @@ function AppHeader() {
         xl: 1536,
       },
     },
+
+
   });
-
   const isMdScreen = useMediaQuery(() => theme.breakpoints.down('md'));
-
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AppBar position="fixed" className={classes.header}>
+        <AppBar className={classes.header}>
           <Toolbar>
             <Grid container spacing={2}>
-              <Grid item xs={6} md={2} className={classes.logoImageSection} style={{ justifyContent: 'start', }}>
+              <Grid item xs={6} md={2} className={classes.logoImageSection} style={{ justifyContent: 'start',  }}>
                 {isMdScreen ? (
                   <>
-
-                    <Grid container >
-
-                      <Grid item xs={12} >
+                    <Grid >
+                      <Grid item xs={12}>
                         <IconButton onClick={handleClickingMenuIcon}>
                           <img
                             src="assets/menu__button.png"
@@ -143,59 +141,16 @@ function AppHeader() {
                             style={{
                               width: 28,
                               height: 28,
-                              // marginBottom: '20px',
                             }}
+                            className={`${classes.menuButtonLogo}`}
                           />
                         </IconButton>
                       </Grid>
-                    
-                      <Collapse in={menuItemClicked} >
-                        <Grid item xs={12}>
-                          <Typography
-                            variant="h4"
-                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Home' ? classes.clicked : ''}`}
-                            onClick={() => handleButtonClick('Home')}
-                          >
-                            Home
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Typography
-                            variant="h4"
-                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Products' ? classes.clicked : ''}`}
-                            onClick={() => handleButtonClick('Products')}
-                          >
-                            Products
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Typography
-                            variant="h4"
-                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Services' ? classes.clicked : ''}`}
-                            onClick={() => handleButtonClick('Services')}
-                          >
-                            Services
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Typography
-                            variant="h4"
-                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'About' ? classes.clicked : ''}`}
-                            onClick={() => handleButtonClick('About')}
-                          >
-                            About us
-                          </Typography>
-                        </Grid>
-                      </Collapse>
-
-
                      
                     </Grid>
-                 
                   </>
                 ) : (
-                  <> 
-                 {/* Google icon */}
+                  <>
                     <Logo
                       src={logo}
                       alt="Logo"
@@ -211,34 +166,34 @@ function AppHeader() {
                 )}
               </Grid>
 
-              <React.Fragment>
+           
                 <Grid item xs={8} md={8} className={classes.paraSection} style={{ display: isMdScreen ? 'none' : 'flex' }}>
                   <Stack spacing={5} direction="row" className={classes.paraStack}>
                     <Typography
                       variant="h4"
                       className={`${classes.appHeaderPara} ${clickedButton === 'Home' ? classes.clicked : ''}`}
-                      onClick={() => handleButtonClick('Home')}
+                            onClick={() => handleButtonClick('Home')}
                     >
                       Home
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara} ${clickedButton === 'Products' ? classes.clicked : ''}`}
-                      onClick={() => handleButtonClick('Products')}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'Products' ?  classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Products')}
                     >
                       Products
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara} ${clickedButton === 'Services' ? classes.clicked : ''}`}
-                      onClick={() => handleButtonClick('Services')}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'Services' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Services')}
                     >
                       Services
                     </Typography>
                     <Typography
                       variant="h4"
-                      className={`${classes.appHeaderPara} ${clickedButton === 'About' ? classes.clicked : ''}`}
-                      onClick={() => handleButtonClick('About')}
+                      className={`${classes.appHeaderPara} ${clickedButton === 'About' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('About')}
                     >
                       About us
                     </Typography>
@@ -253,7 +208,7 @@ function AppHeader() {
                       aria-controls={open ? "account-menu" : undefined}
                       aria-haspopup="true"
                       aria-expanded={open ? "true" : undefined}
-
+                      className={`${classes.profileButtonLogo}`}
                     >
                       <Avatar
                         sx={{
@@ -335,11 +290,57 @@ function AppHeader() {
                     </CusMenuItem>
                   </Menu>
                 </Grid>
-              </React.Fragment>
+           
+
+
+
+               
+
+
 
             </Grid>
+           
 
           </Toolbar>
+
+          <Collapse in={menuItemClicked} sx={{}}>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Home' ? classes.clicked : ''}`}
+                            onClick={() => handleButtonClick('Home')}
+                          >
+                            Home
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Products' ?  classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Products')}
+                          >
+                            Products
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'Services' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('Services')}
+                          >
+                            Services
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h4"
+                            className={`${classes.appHeaderPara} ${classes.menuButtonPara} ${clickedButton === 'About' ? classes.clicked :  ''}`}
+                            onClick={() => handleButtonClick('About')}
+                          >
+                            About us
+                          </Typography>
+                        </Grid>
+                      </Collapse> 
 
         </AppBar >
 

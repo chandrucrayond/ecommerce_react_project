@@ -18,113 +18,156 @@ export default function FilterSection() {
         },
     });
     const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
-    const [isPhonesChecked, setIsPhonesChecked] = useState(true);
+    const [isAllChecked, setIsAllChecked] = useState(true);
+    const [isPhonesChecked, setIsPhonesChecked] = useState(false);
     const [isHeadphonesChecked, setIsHeadphonesChecked] = useState(false);
     const [isAccessoriesChecked, setIsAccessoriesChecked] = useState(false);
-  
 
+    const handleAllCheckboxChange = (event) => {
+        setIsAllChecked(event.target.checked);
+        if(event.target.checked){
+            setIsPhonesChecked(false);
+            setIsHeadphonesChecked(false);
+            setIsAccessoriesChecked(false);
+        }
+    };
 
     const handlePhonesCheckboxChange = (event) => {
         setIsPhonesChecked(event.target.checked);
+        // if (event.target.checked === true) {
+        //     setIsAllChecked(false);
+        // }
+        setIsAllChecked(false);
     };
 
     const handleHeadphonesCheckboxChange = (event) => {
         setIsHeadphonesChecked(event.target.checked);
+        // if (event.target.checked === true) {
+        //     setIsAllChecked(false);
+        // }
+        setIsAllChecked(false);
     };
 
     const handleAccessoriesCheckboxChange = (event) => {
         setIsAccessoriesChecked(event.target.checked);
+        // if (event.target.checked === true) {
+        //     setIsAllChecked(false);
+        // }
+        setIsAllChecked(false);
     };
 
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     return (
         <ThemeProvider theme={theme}>
-        <Box
-            className={`${classes.filterSectionContainer}`}>
+            <Box
+                className={`${classes.filterSectionContainer}`}>
 
-            <p style={{
-                display: isMdScreen ? 'none' : 'block',
-                position: 'relative',
-                left: '12px',
-            }} className={`${classes.filterPara}`}>Filters</p>
-            <form action="/action_page.php">
-                <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
-                    <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
+                <p style={{
+                    display: isMdScreen ? 'none' : 'block',
+                    position: 'relative',
+                    left: '12px',
+                }} className={`${classes.filterPara}`}>Filters</p>
+                <form action="/action_page.php">
+                    <Box className={`${isMdScreen ? classes.responsiveFilter : ''}`}>
+                        <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
 
-                        <Checkbox
-                            {...label}
-                            className={`${classes.filterCheckbox}`}
-                            checked={isPhonesChecked}
-                            onChange={handlePhonesCheckboxChange}
-                            size="small"
-                            sx={{
-                                '&.Mui-checked': {
-                                    color: '#219ebc',
-                                },
-                            }}
-                        />
-                        <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}
-                            onClick={() => {
-                                setIsPhonesChecked(!isPhonesChecked);
-                                handleHeadphonesCheckboxChange();
-                            }}
-                            style={{ cursor: 'pointer', }}
-                        >Phones</label>
-                    </Box>
-                    
-                    <Box className={`${classes.responsiveFilterContents} ${classes.HeadphonesFilter}`}>
-                        <Checkbox
-                            {...label}
-                            className={`${classes.filterCheckbox}`}
-                            checked={isHeadphonesChecked}
-                            onChange={handleHeadphonesCheckboxChange}
-                            size="small"
-                            sx={{
-                                // color: pink[800],
-                                '&.Mui-checked': {
-                                    color: '#219ebc',
-                                },
-                            }}
-                        />
-                        <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}
-                            onClick={() => {
-                                setIsHeadphonesChecked(!isHeadphonesChecked);
-                                handleHeadphonesCheckboxChange();
-                            }}
-                            style={{ cursor: 'pointer', }}
-                        >Headphones</label>
-                    </Box>
-                    {/* <br /> */}
-                  
-                    <Box className={`${classes.responsiveFilterContents} ${classes.AccessoriesFilter}`}>
-                        <Checkbox
-                            {...label}
-                            className={`${classes.filterCheckbox}`}
-                            checked={isAccessoriesChecked}
-                            onChange={handleAccessoriesCheckboxChange}
-                            size="small"
-                            sx={{
-                                // color: pink[800],
-                                '&.Mui-checked': {
-                                    color: '#219ebc',
-                                },
-                            }}
-                        />
-                        <label className={isAccessoriesChecked ? classes.responsiveFilterChecked : ''}
-                            onClick={() => {
-                                setIsAccessoriesChecked(!isAccessoriesChecked);
-                                handleAccessoriesCheckboxChange();
-                            }}
-                            style={{ cursor: 'pointer', }}
-                        >
-                            Accessories
-                        </label>
-                    </Box>
-                </Box>
-            </form>
+                            <Checkbox
+                                {...label}
+                                className={`${classes.filterCheckbox}`}
+                                checked={isAllChecked}
+                                onChange={handleAllCheckboxChange}
+                                size="small"
+                                sx={{
+                                    '&.Mui-checked': {
+                                        color: '#219ebc',
+                                    },
+                                }}
+                            />
+                            <label className={isAllChecked ? classes.responsiveFilterChecked : ''}
+                                onClick={() => {
+                                    setIsAllChecked(!isAllChecked);
+                                    handleAllCheckboxChange();
+                                }}
+                                style={{ cursor: 'pointer', }}
+                            >All</label>
+                        </Box>
 
-        </Box>
+                        <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
+
+                            <Checkbox
+                                {...label}
+                                className={`${classes.filterCheckbox}`}
+                                checked={isPhonesChecked}
+                                onChange={handlePhonesCheckboxChange}
+                                size="small"
+                                sx={{
+                                    '&.Mui-checked': {
+                                        color: '#219ebc',
+                                    },
+                                }}
+                            />
+                            <label className={isPhonesChecked ? classes.responsiveFilterChecked : ''}
+                                onClick={() => {
+                                    setIsPhonesChecked(!isPhonesChecked);
+                                    handlePhonesCheckboxChange();
+                                }}
+                                style={{ cursor: 'pointer', }}
+                            >Phones</label>
+                        </Box>
+
+                        <Box className={`${classes.responsiveFilterContents} ${classes.HeadphonesFilter}`}>
+                            <Checkbox
+                                {...label}
+                                className={`${classes.filterCheckbox}`}
+                                checked={isHeadphonesChecked}
+                                onChange={handleHeadphonesCheckboxChange}
+                                size="small"
+                                sx={{
+                                    // color: pink[800],
+                                    '&.Mui-checked': {
+                                        color: '#219ebc',
+                                    },
+                                }}
+                            />
+                            <label className={isHeadphonesChecked ? classes.responsiveFilterChecked : ''}
+                                onClick={() => {
+                                    setIsHeadphonesChecked(!isHeadphonesChecked);
+                                    handleHeadphonesCheckboxChange();
+                                }}
+                                style={{ cursor: 'pointer', }}
+                            >Headphones</label>
+                        </Box>
+                        {/* <br /> */}
+
+                        <Box className={`${classes.responsiveFilterContents} ${classes.AccessoriesFilter}`}>
+                            <Checkbox
+                                {...label}
+                                className={`${classes.filterCheckbox}`}
+                                checked={isAccessoriesChecked}
+                                onChange={handleAccessoriesCheckboxChange}
+                                size="small"
+                                sx={{
+                                    // color: pink[800],
+                                    '&.Mui-checked': {
+                                        color: '#219ebc',
+                                    },
+                                }}
+                            />
+                            <label className={isAccessoriesChecked ? classes.responsiveFilterChecked : ''}
+                                onClick={() => {
+                                    setIsAccessoriesChecked(!isAccessoriesChecked);
+                                    handleAccessoriesCheckboxChange();
+                                }}
+                                style={{ cursor: 'pointer', }}
+                            >
+                                Accessories
+                            </label>
+                        </Box>
+                    </Box>
+                </form>
+
+            </Box>
         </ThemeProvider>
 
     );

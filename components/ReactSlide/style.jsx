@@ -8,9 +8,10 @@ export const sliderStyle = makeStyles((theme) => ({
             // justifyContent: "center",
             "& .slick-next:before, .slick-prev:before": {
                 color: "lightGrey !important",
+                fontSize: "25px !important",
             },
             "& .slick-arrow.slick-next": {
-                right: "30px",
+                right: "30px",         
             },
             "& .slick-prev": {
                 zIndex: '2',
@@ -21,5 +22,10 @@ export const sliderStyle = makeStyles((theme) => ({
                 justifyContent: "center !important", 
                 alignItems: "center",
               },
+
+            //  "& .slick-prev,.slick-next" :{
+            //         display:'block !important',
+            //         width: '30px !important',
+            //   },
         },
 }));

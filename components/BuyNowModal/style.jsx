@@ -274,7 +274,7 @@ export const buyNowStyle = makeStyles({
       boxShadow: 'none !important',
       backgroundColor: '#219ebc1a !important',
     },
-   
+
   },
 
   summaryHeading: {
@@ -341,6 +341,34 @@ export const buyNowStyle = makeStyles({
     fontWeight: 'bold !important',
     letterSpacing: '0px !important',
     color: '#FB8500 !important',
+  },
+  list: {
+    "& li": {
+    },
+    "& li:hover": {
+      background: 'deepPurple[100] !important'
+    },
+    "& li.Mui-selected": {
+      backgroundColor: '#219ebc1a !important'
+    },
+    "& li.Mui-selected:hover": {
+      background: 'deepPurple[500] !important'
+    }
+  },
+  select: {
+
+    "&:focus":{
+      border:'none !important',
+    },
+    "&:active":{
+      border:'none !important',
+    },
+    "&:target":{
+      border:'none !important',
+    },
+    "&:focus-visible":{
+      border:'none !important',
+    },
   },
 
 

@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 export const appHeaderStyle = makeStyles((theme) => ({
     header: {
         backgroundColor: '#ffffff !important',
-        // boxShadow: 'none !important',
+       
     },
     username: {
         fontWeight: "bold !important", 
@@ -12,9 +12,10 @@ export const appHeaderStyle = makeStyles((theme) => ({
         color: "black !important", 
     },
     logoImageSection: {
-        display: "flex",
-        justifyContent: "center",
-        alignSelf: "center",
+        // display: "flex",
+        // justifyContent: "center",
+        // alignSelf: "center",
+        transition: "none !important",
     },
     paraSection: {
         display: "flex",
@@ -42,8 +43,8 @@ export const appHeaderStyle = makeStyles((theme) => ({
       fontWeight: '600',
     },
     menuButtonPara: {
-        marginBottom: '20px !important',
-        marginLeft: '10px !important',
+        marginBottom: '10px !important',
+        marginLeft: '25px !important',
     },
     clicked: {
         display: 'list-item',
@@ -52,5 +53,14 @@ export const appHeaderStyle = makeStyles((theme) => ({
     },
     notClicked: {
         display: 'block',
+    },
+    profileButtonLogo: {
+        position: 'fixed !important',
+        zIndex: '99999 !important',
+        paddingTop: '0 !important',
+    },
+    menuButtonLogo: {
+        // position: 'absolute !important',
+        // zIndex: '99999 !important',
     },
 }));

@@ -165,10 +165,10 @@ export const createAccountStyle = makeStyles((theme) => ({
           display: 'inline !important',
         },
         errorMessage:{
+          font: 'normal normal 500 12px/18px Montserrat !important',
           color: 'red',
           position: 'relative',
           bottom: '15px',
-          fontSize: '15px !important',
           marginTop: '5px !important',
         },
         passwordError: {

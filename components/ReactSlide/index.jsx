@@ -9,27 +9,28 @@ export default function SimpleSlider({ productData }) {
   console.log(productData);
   var settings = {
     dots: false,
+   
   };
 
-  return (
-    <div className={classes.sliderContainer}
+return (
+  <div className={classes.sliderContainer}
+  >
+    <Slider {...settings}
     >
-      <Slider {...settings}
-      >
-        {productData?.url?.map((url, index) =>
-          <div>
+      {productData?.url?.map((url, index) =>
+        <div>
 
-            <img
-              key={url}
-              src={url}
-              width={125}
-              height={150}
-            />
+          <img
+            key={url}
+            src={url}
+            width={125}
+            height={150}
+          />
 
-          </div>
-        )}
-      </Slider>
-    </div>
-  );
+        </div>
+      )}
+    </Slider>
+  </div>
+);
 }
 
