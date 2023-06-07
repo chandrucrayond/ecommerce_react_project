@@ -25,18 +25,15 @@ export default function FilterSection() {
 
     const handleAllCheckboxChange = (event) => {
         setIsAllChecked(event.target.checked);
-        if(event.target.checked){
+       
             setIsPhonesChecked(false);
             setIsHeadphonesChecked(false);
             setIsAccessoriesChecked(false);
-        }
+     
     };
 
     const handlePhonesCheckboxChange = (event) => {
         setIsPhonesChecked(event.target.checked);
-        // if (event.target.checked === true) {
-        //     setIsAllChecked(false);
-        // }
         setIsAllChecked(false);
     };
 
@@ -86,8 +83,9 @@ export default function FilterSection() {
                             />
                             <label className={isAllChecked ? classes.responsiveFilterChecked : ''}
                                 onClick={() => {
-                                    setIsAllChecked(!isAllChecked);
-                                    handleAllCheckboxChange();
+                                    if(isAllChecked===false){
+                                        handleAllCheckboxChange();
+                                    }                               
                                 }}
                                 style={{ cursor: 'pointer', }}
                             >All</label>
