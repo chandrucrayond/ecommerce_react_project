@@ -21,6 +21,41 @@ export default function FilterSection() {
     const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
+    const [isAllChecked, setIsAllChecked] = useState(false);
+
+    const [filterData, setFilterData] = useState({
+        data: [
+            {
+                name: "Phones",
+                value: false
+            },
+            {
+                name: "Headphones",
+                value: false
+            },
+            {
+                name: "Accessories",
+                value: false
+            },
+        ]
+    })
+
+
+    const handleCheckboxChange = (v, i) => {
+        filterData.data[i]['value'] = v
+        setFilterData({ ...filterData })
+        if (v === false) {
+            setIsAllChecked(false);
+        }
+    };
+
+    const handleCheckboxChangeAll = (v, i) => {
+        var newData = filterData.data.map(v => { return { ...v, value: !isAllChecked } })
+        setFilterData({ data: newData });
+        setIsAllChecked(!isAllChecked);
+    };
+
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -34,7 +69,7 @@ export default function FilterSection() {
                 <form action="/action_page.php">
                     <Box className={`${isMdScreen ? classes.responsiveFilter : ''} `}>
                         <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
-                        
+
                             <Checkbox
                                 {...label}
                                 className={`${classes.filterCheckbox}`}
@@ -51,7 +86,7 @@ export default function FilterSection() {
                                 onClick={handleCheckboxChangeAll}
                                 style={{ cursor: 'pointer', }}
                             >All</label>
-                           
+
                         </Box>
 
 

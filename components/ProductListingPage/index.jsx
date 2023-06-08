@@ -43,46 +43,13 @@ export default function ProductListingPage() {
 
 
 //handling the state for filter section
-const [isAllChecked, setIsAllChecked] = useState(false);
-
-  const [filterData, setFilterData] = useState({
-    data: [
-        {
-            name: "Phones",
-            value: false
-        },
-        {
-            name: "Headphones",
-            value: false
-        },
-        {
-            name: "Accessories",
-            value: false
-        },
-    ]
-})
-
-
-const handleCheckboxChange = (v, i) => {
-    filterData.data[i]['value'] = v
-    setFilterData({ ...filterData })
-    if(v===false){
-        setIsAllChecked(false);
-    }
-};
-
-const handleCheckboxChangeAll = (v, i) => {    
-    var  newData = filterData.data.map(v => { return { ...v, value: !isAllChecked } })
-    setFilterData({ data: newData });
-    setIsAllChecked(!isAllChecked);
-};
 
 
 
 
   return (
     <Grid container spacing={5} className={classes.listingPageContainer}>
-     {selectedCategory==="all"?(
+     {/* {selectedCategory==="all"?(
 
       productArray.map((value, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
@@ -90,17 +57,18 @@ const handleCheckboxChangeAll = (v, i) => {
         </Grid>
 
       ))
-     ):(
+     ):( */}
 
-      productArray
-        .filter((product) => product.section === selectedCategory)
+      {productArray
+        // .filter((product) => product.section === selectedCategory)
         .map((value, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard product={value} />
           </Grid>
 
         ))
-     )}
+        }
+     {/* )} */}
 
       <Box style={{ display: isLgScreen ? 'none' : '' }}>
         <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }} className={classes.filterIconButton}
