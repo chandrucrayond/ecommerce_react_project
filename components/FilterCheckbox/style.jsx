@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 
-export const filterSectionStyle = makeStyles((theme) => ({
+export const filterCheckboxStyle = makeStyles((theme) => ({
     filterSectionContainer: {
         position: 'fixed',
         fontFamily: 'Montserrat',
@@ -25,7 +25,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
         transition: 'all 0.5s ease !important',
         boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5) !important',
         padding: '15px !important',
-        paddingLeft: '0px !important',
+        paddingLeft :'0px !important',
         backgroundColor: '#fff !important',
         borderRadius: '6% !important',
         fontSize: '13px !important',
@@ -44,6 +44,7 @@ export const filterSectionStyle = makeStyles((theme) => ({
         paddingBottom: '0px !important',
         marginTop: '0px !important',
         marginBottom: '0px !important',
+        position: 'relative !important',
        
     },
     responsiveFilterChecked: {
@@ -59,13 +60,5 @@ export const filterSectionStyle = makeStyles((theme) => ({
         lineHeight: '15px',
         letterSpacing: '0px',
         color: '#B3C1C8',
-    },
-    HeadphonesFilter: {
-    position: 'relative !important',
-    // bottom: '20px !important',
-    },
-    AccessoriesFilter: {
-        position: 'relative !important',
-        // bottom: '40px !important',
     },
 }));

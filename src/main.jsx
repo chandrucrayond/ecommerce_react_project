@@ -29,7 +29,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/login",
-      errorElement: <ErrorPage />,
+      // errorElement: <ErrorPage />,
       element: (
         <Protected isSignedIn={isSignedIn}>
           <CreateAccount onLogin={handleLogin} />
@@ -38,7 +38,7 @@ const App = () => {
     },
     {
       path: "/",
-      errorElement: <ErrorPage />,
+      // errorElement: <ErrorPage />,
       element: (
         // <Protected isSignedIn={isSignedIn}>
           <SharedLayout />

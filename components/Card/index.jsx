@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
                                         
                                     ) : (
                                         <p  className={classes.productFeature} style={{ textAlign: 'left' }}>
-                                            {product.feature}
+                                            {product.section}
                                         </p>
                                     )}
                                 </Stack>
