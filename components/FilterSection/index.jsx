@@ -5,7 +5,8 @@ import { useMediaQuery, Box, Checkbox } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import FilterCheckbox from '../FilterCheckbox';
 
-export default function FilterSection() {
+export default function FilterSection(props) {
+    const { filterData, handleCheckboxChange, handleCheckboxChangeAll, selectedCategory, setSelectedCategory } = props;
     const classes = filterSectionStyle();
     const theme = createTheme({
         breakpoints: {
@@ -20,86 +21,53 @@ export default function FilterSection() {
     });
     const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-    const [isAllChecked, setIsAllChecked] = useState(false);
-
-    const [filterData, setFilterData] = useState({
-        data: [
-            {
-                name: "Phones",
-                value: false
-            },
-            {
-                name: "Headphones",
-                value: false
-            },
-            {
-                name: "Accessories",
-                value: false
-            },
-        ]
-    })
-
-
-    const handleCheckboxChange = (v, i) => {
-        filterData.data[i]['value'] = v
-        setFilterData({ ...filterData })
-        if (v === false) {
-            setIsAllChecked(false);
-        }
-    };
-
-    const handleCheckboxChangeAll = (v, i) => {
-        var newData = filterData.data.map(v => { return { ...v, value: !isAllChecked } })
-        setFilterData({ data: newData });
-        setIsAllChecked(!isAllChecked);
-    };
-
+    const isAllChecked = filterData.data.every(item => item.value);
 
     return (
         <ThemeProvider theme={theme}>
-            <Box
-                className={`${classes.filterSectionContainer}`}>
-
-                <p style={{
-                    display: isMdScreen ? 'none' : 'block',
-                    position: 'relative',
-                    left: '12px',
-                }} className={`${classes.filterPara}`}>Filters</p>
+            <Box className={`${classes.filterSectionContainer}`}>
+                <p
+                    style={{
+                        display: isMdScreen ? 'none' : 'block',
+                        position: 'relative',
+                        left: '12px',
+                    }}
+                    className={`${classes.filterPara}`}
+                >
+                    Filters
+                </p>
                 <form action="/action_page.php">
                     <Box className={`${isMdScreen ? classes.responsiveFilter : ''} `}>
                         <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
-
                             <Checkbox
-                                {...label}
                                 className={`${classes.filterCheckbox}`}
                                 checked={isAllChecked}
                                 onChange={handleCheckboxChangeAll}
                                 size="small"
                                 sx={{
                                     '&.Mui-checked': {
-                                        color: '#219ebc',
+                                        color: pink[500],
                                     },
                                 }}
                             />
-                            <label className={isAllChecked ? classes.responsiveFilterChecked : ''}
+                            <label
+                                className={isAllChecked ? classes.responsiveFilterChecked : ''}
                                 onClick={handleCheckboxChangeAll}
-                                style={{ cursor: 'pointer', }}
-                            >All</label>
-
+                                style={{ cursor: 'pointer' }}
+                            >
+                                All
+                            </label>
                         </Box>
-
-
-                        {filterData?.data.map((values, index) => (
+                        {filterData.data.map((values, index) => (
                             <FilterCheckbox
                                 onChange={(e) => handleCheckboxChange(!values.value, index)}
                                 label={values.name}
                                 checked={values.value}
-                                key={index} />
+                                key={index}
+                            />
                         ))}
                     </Box>
                 </form>
-
             </Box>
         </ThemeProvider>
 
