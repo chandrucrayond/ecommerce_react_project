@@ -82,19 +82,9 @@ function SharedLayout() {
 
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const filterNamesByValue = () => {
-    const filteredNames = filterData.data
-      .filter((filterSection) => filterSection.value === true)
-      .map((filterSection) => filterSection.name);
-
-    return filteredNames;
-  };
-
-  const productArrayData = productArray?.filter(v => {
-    if (filterData?.data?.filter(c => c.key === v.section && c.value)?.length > 0) {
-      return v
-    }
-  })
+  const productArrayData = filterData?.data?.some(c => c.value)
+    ? productArray.filter(v => filterData.data.some(c => c.key === v.section && c.value))
+    : productArray;
 
   return (
     <Container>
@@ -108,7 +98,6 @@ function SharedLayout() {
             {isMdScreen ? (
               <>
                 <Fab size="small" color="primary" sx={{ position: 'fixed', bottom: '20px', right: '20px' }}
-                  // className={classes.filterIconButton}
                   onClick={handleClick}>
                   <TuneIcon />
                 </Fab>
@@ -138,9 +127,7 @@ function SharedLayout() {
             )}
 
             <Grid item lg={9} xs={12}>
-              <ProductListingPage productArray={productArrayData}
-              // filterSelected={filterNamesByValue()}
-              />
+              <ProductListingPage productArray={productArrayData} />
             </Grid>
           </Grid>
         </Container>
