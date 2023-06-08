@@ -36,7 +36,7 @@ export default function FilterSection(props) {
                 >
                     Filters
                 </p>
-                <form action="/action_page.php">
+              
                     <Box className={`${isMdScreen ? classes.responsiveFilter : ''} `}>
                         <Box className={`${classes.responsiveFilterContents} ${classes.phoneFilter}`}>
                             <Checkbox
@@ -67,7 +67,7 @@ export default function FilterSection(props) {
                             />
                         ))}
                     </Box>
-                </form>
+              
             </Box>
         </ThemeProvider>
 

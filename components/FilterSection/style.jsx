@@ -1,16 +1,14 @@
 import { makeStyles } from "@mui/styles";
 
 export const filterSectionStyle = makeStyles((theme) => ({
-    filterSectionContainer: {
-        position: 'fixed',
+    filterSectionContainer: { 
         fontFamily: 'Montserrat',
         fontStyle: 'normal',
         fontWeight: 'normal',
         fontSize: '13px',
         lineHeight: '18px',
         color: '#9AACB5',
-        left: '130px',
-        zIndex: '100',
+        // left: '130px',
     },
     filterCheckbox: {
         marginLeft: '0',
@@ -19,22 +17,21 @@ export const filterSectionStyle = makeStyles((theme) => ({
         opacity: '0.5',
     },
     responsiveFilter: {
-        position: 'fixed !important',
-        right: '20px !important',
-        bottom: '90px !important',
-        transition: 'all 0.5s ease !important',
+       
+    //     right: '20px !important',
+    //     bottom: '90px !important', 
         boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5) !important',
         padding: '15px !important',
         paddingLeft: '0px !important',
         backgroundColor: '#fff !important',
         borderRadius: '6% !important',
         fontSize: '13px !important',
-        // lineHeight: '18px !important',
         fontFamily: '"Montserrat", sans-serif !important',
         fontWeight: '700 !important',
         color: '#131718 !important',
         textAlign: 'left  !important',
         textTransform: 'none !important',
+        // transition: 'all 10s ease !important',
     },
     responsiveFilterContents: {
         display: 'flex !important',
@@ -62,10 +59,8 @@ export const filterSectionStyle = makeStyles((theme) => ({
     },
     HeadphonesFilter: {
     position: 'relative !important',
-    // bottom: '20px !important',
     },
     AccessoriesFilter: {
         position: 'relative !important',
-        // bottom: '40px !important',
     },
 }));

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Container, Box, Grid, Fab, Popover } from '@mui/material';
+import { AppBar, Toolbar, Typography, Container, Box, Grid, Fab, Popover, Collapse, Fade, Slide } from '@mui/material';
 import AppHeader from '../AppHeader';
 import FilterSection from '../FilterSection';
 import FooterSection from '../Footer/index';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import TuneIcon from '@mui/icons-material/Tune';
 import ProductListingPage from '../ProductListingPage';
 import { jsonData } from '../ProductsJson';
@@ -26,17 +26,19 @@ function SharedLayout() {
 
   const isMdScreen = useMediaQuery(() => theme.breakpoints.down('lg'));
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
+  
+  const [open, setOpen] = useState(false);
+  const [anchorPosition, setAnchorPosition] = useState({ top: 0, left: 0 });
+  const filterSectionRef = useRef(null);
+  
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setOpen(!open);
+    setAnchorPosition({ top: event.clientY, left: event.clientX });
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
-
-  const open = Boolean(anchorEl);
 
   //filter section checkbox state to be managed area
 
@@ -86,6 +88,7 @@ function SharedLayout() {
     ? productArray.filter(v => filterData.data.some(c => c.key === v.section && c.value))
     : productArray;
 
+  
   return (
     <Container>
       <AppHeader />
@@ -101,22 +104,18 @@ function SharedLayout() {
                   onClick={handleClick}>
                   <TuneIcon />
                 </Fab>
-
                 <Popover
                   id={"simple-popover"}
                   open={open}
-                  anchorEl={anchorEl}
                   onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }} >
-
-                  <FilterSection filterData={filterData} handleCheckboxChange={handleCheckboxChange}
+                  anchorReference="anchorPosition"
+                  anchorPosition={anchorPosition}
+                >       
+                  <FilterSection ref={filterSectionRef}
+                    filterData={filterData} handleCheckboxChange={handleCheckboxChange}
                     handleCheckboxChangeAll={handleCheckboxChangeAll} selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory} />
-
-                </Popover>
+               </Popover>
               </>
             ) : (
               <Grid item lg={3} >

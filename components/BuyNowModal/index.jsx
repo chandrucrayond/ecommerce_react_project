@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Container from '@mui/material/Container';
 import { Grid, Stack, Typography, MenuItem, TextField, Select, InputLabel, FormControl, } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import {useMediaQuery} from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { buyNowStyle } from "./style";
 
@@ -118,18 +118,18 @@ export default function BuyNowModal({ open, handleClose, productData }) {
 
     const menuProps = {
         classes: {
-          list: classes.list
+            list: classes.list
         },
         anchorOrigin: {
-          vertical: "bottom",
+            vertical: "bottom",
             horizontal: "left"
         },
         transformOrigin: {
-          vertical: "top",
+            vertical: "top",
             horizontal: "left"
         },
         getContentAnchorEl: null
-      };
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -160,29 +160,29 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                             <Grid item xs={12} lg={8} sx={{ display: 'flex', flexDirection: 'column', }} >
                                 <Box sx={productOverview} style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px', paddingBottom: '20px', }}>
                                     <Grid item xs={12} lg={4}>
-                                        <Grid container alignItems="center">
-                                            <Grid item xs={5} sx={{ paddingRight: 0, justifyContent: 'center', display: 'flex', }}>
+                                        <Grid container alignItems="center" sx={{ display: 'flex', justifyContent: 'center', }}>
+                                            <Grid item xs={5} sx={{ paddingRight: 0, display: 'flex', justifyContent: 'center', }}>
                                                 <img
                                                     src={productData.image}
                                                     alt="pixel 5 image"
-                                                    style={{ width: 31, height: 38, }}
+                                                    style={{
+                                                        width: isLgScreen ? 70 : 105,
+                                                        height: isLgScreen ? 55 : 55,
+                                                    }}
                                                 />
                                             </Grid>
-                                            <Grid item xs={12} lg={5} sx={{ paddingLeft: 0, }}>
-                                                <Typography variant="h6" className={classes.productHeading}>
+                                            <Grid item xs={12} lg={5} sx={{ paddingLeft: 0, display: 'grid', justifyContent: 'center', }}>
+                                                <Typography variant="h6" className={classes.productHeading} sx={{  display: 'flex', justifyContent: 'center',  }}>
                                                     {productData.name}
                                                 </Typography>
-                                                <Typography variant="body2" className={classes.productSerialNo}>
+                                                <Typography variant="body2" className={classes.productSerialNo} sx={{  display: 'flex', justifyContent: 'center', }}>
                                                     {productData.serialNo}
                                                 </Typography>
                                             </Grid>
-                                            {/* <Grid item xs={2} sx={{ paddingLeft: 0 }}>
-                                                <p>.</p>
-                                            </Grid> */}
                                         </Grid>
                                     </Grid>
 
-                                    <Grid item xs={12} lg={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', }} >
+                                    <Grid item xs={12} lg={3} sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center', position:'relative', left:'10px'}} >
 
                                         <Typography variant="body2" className={classes.productSpeciality}>
                                             Black | 128GB
@@ -272,7 +272,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                         InputProps={{
                                                             className: `${classes.formInputsName}`,
                                                         }}
-                                                      
+
                                                         fullWidth
                                                     />
                                                 </Grid>
@@ -362,7 +362,7 @@ export default function BuyNowModal({ open, handleClose, productData }) {
                                                             sx={inputBuyNow}
                                                             variant="outlined"
                                                             MenuProps={menuProps}
-                                                            className={`${classes.select}`} 
+                                                            className={`${classes.formSelectCity}`}
                                                         >
                                                             <MenuItem value={'Select Country'} selected className={classes.formSelectCity}>
                                                                 Select Country

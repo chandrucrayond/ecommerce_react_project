@@ -15,18 +15,17 @@ const theme = createTheme({
 export const buyNowStyle = makeStyles({
 
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // width: '100%',
+    display: 'flex !important',
+    alignItems: 'center !important',
+    justifyContent: 'center !important',
   },
   modalContent: {
     outline: 'none',
     position: 'relative',
     width: '90vw',
     maxWidth: '800px',
-    maxHeight: '50vh',
-    overflowY: 'auto',
+    // maxHeight: '50vh',
+
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     borderRadius: theme.shape.borderRadius,
@@ -37,7 +36,22 @@ export const buyNowStyle = makeStyles({
     lineHeight: '15px !important',
     fontFamily: 'Montserrat !important',
     color: '#b3c1c8 !important',
-    overflow: 'visible',
+
+
+    overflow: 'auto',
+    scrollbarWidth: 'thin',
+    scrollbarColor: 'rgba(100, 0, 0, 0.5) rgba(100, 0, 0, 0.1)',
+    '&::-webkit-scrollbar': {
+      width: '6px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#219ebc',
+    },
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: 'rgba(0, 0, 0, 0.1) !important',
+      height: '100px !important',
+      maxHeight: '10px !important',
+    },
   },
   modalTitle: {
     marginBottom: theme.spacing(2),
@@ -57,7 +71,7 @@ export const buyNowStyle = makeStyles({
   productHeading: {
     fontStyle: 'normal !important',
     fontWeight: '700 !important',
-    fontSize: '16px !important',
+    fontSize: '13px !important',
     lineHeight: '19px !important',
     fontFamily: 'Montserrat !important',
     letterSpacing: '0px !important',
@@ -357,17 +371,17 @@ export const buyNowStyle = makeStyles({
   },
   select: {
 
-    "&:focus":{
-      border:'none !important',
+    "&:focus": {
+      border: 'none !important',
     },
-    "&:active":{
-      border:'none !important',
+    "&:active": {
+      border: 'none !important',
     },
-    "&:target":{
-      border:'none !important',
+    "&:target": {
+      border: 'none !important',
     },
-    "&:focus-visible":{
-      border:'none !important',
+    "&:focus-visible": {
+      border: 'none !important',
     },
   },
 

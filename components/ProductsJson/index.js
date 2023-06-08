@@ -242,7 +242,7 @@ export const jsonData = [
     image: "assets/charger.png",
     otherColor: "assets/charger.png",
     url: ["assets/charger.png", "assets/charger.png"],
-    name: "Mobile Charger",
+    name: "Mobile     Charger",
     serialNo: "PIX78912-78",
     price: "$ 59",
     priceInNumber: 59,

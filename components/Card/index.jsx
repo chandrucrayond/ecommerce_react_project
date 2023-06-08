@@ -79,7 +79,7 @@ const ProductCard = ({ product }) => {
                                         </a>
                                         
                                     ) : (
-                                        <p  className={classes.productFeature} style={{ textAlign: 'left' }}>
+                                        <p  className={classes.productFeature} style={{ textAlign: 'left', textTransform: 'capitalize' }}>
                                             {product.section}
                                         </p>
                                     )}
